@@ -86,9 +86,7 @@ t_command	*parser(t_toolbox *tools)
 {
 	t_lexer		*aux;
 	t_command	*cmd;
-	int	i;
 
-	i = 0;
 	aux = tools->lexer_list;
 	cmd = cmd_list(aux);
 	while (aux)

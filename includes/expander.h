@@ -28,4 +28,6 @@ char	*expnd(char *str, char **env);
 int *init_qt(void);
 char	*expnd(char *str, char **env);
 char *init_aux(void);
+char	*check_exp_redir(char *str, char **env);
+char	*check_str_two(char *str, char **env, int i, int *qt);
 #endif

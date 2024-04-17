@@ -41,23 +41,25 @@ void	check_out_fd(t_command *cmd)
 	t_redir	*out_files;
 
 	out_files = cmd->out_files;
+	
 	while (out_files)
 	{
 		if (cmd->app == 1)
 		{
-			printf("\nappend open\n\n");
 			cmd->out_fd  = open(out_files->file, O_WRONLY | O_APPEND 
 				| O_CREAT, 0644);
 		}
 		else
 		{
-			printf("\nnormal open\n\n");
 			cmd->out_fd = open(out_files->file, O_CREAT | O_WRONLY
 					| O_TRUNC, 0644);
 		}
 		if (out_files->next)
 			close(cmd->out_fd);
-		out_files = out_files->next;
+		if (out_files->next)
+			out_files = out_files->next;
+		else
+			break;
 	}
 }
 
@@ -72,6 +74,9 @@ void	get_fds(t_command *raw_cmd)
 			cmd->in_fd = check_in_fd(cmd->in_files);
 		if (cmd->out_files)
 			check_out_fd(cmd);
-		cmd = cmd->next;
+		if (cmd->next)
+			cmd = cmd->next;
+		else
+			break ;
 	}
 }

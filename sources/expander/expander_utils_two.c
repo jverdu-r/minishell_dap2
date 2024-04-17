@@ -67,3 +67,16 @@ char	*init_aux(void)
 	aux[0] = 0;
 	return (aux);
 }
+
+char	*check_exp_redir(char *str, char **env)
+{
+	int		*qt;
+	int		i;
+	char	*res;
+
+	qt = init_qt();
+	i = 0;
+	res = check_str_two(str, env, i, qt);
+	free(qt);
+	return (trimmed(res, 0, 0));
+}

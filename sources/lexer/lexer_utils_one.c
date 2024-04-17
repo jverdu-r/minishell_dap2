@@ -16,12 +16,19 @@ t_lexer	*lexer_new(char	*str, t_token token)
 {
 	t_lexer	*new;
 	
-	printf("new str: '%s'\n", str);
 	new = malloc(sizeof(t_lexer));
 	if (!new)
 		return (NULL);
-	new->str = str;
-	new->token = token;
+	if (str)
+	{
+		new->str = str;
+		new->token = 0;
+	}
+	if (token)
+	{
+		new->token = token;
+		new->str = NULL;
+	}
 	new->index = 0;
 	new->next = NULL;
 	new->prev = NULL;
@@ -79,7 +86,7 @@ void	lexer_addback(t_lexer **head, t_lexer *new)
 {
 	t_lexer	*tmp;
 
-	if (ft_strlen(new->str) > 0)
+	if (ft_strlen(new->str) > 0 || new->token)
 	{
 		tmp = *head;
 		if (*head == NULL)
@@ -87,7 +94,12 @@ void	lexer_addback(t_lexer **head, t_lexer *new)
 		else
 		{
 			while (tmp->next)
-				tmp = tmp->next;
+			{
+				if (tmp->next)
+					tmp = tmp->next;
+				else
+					break ;
+			}
 			tmp->next = new;
 			new->index = tmp->index + 1;
 			new->prev = tmp;

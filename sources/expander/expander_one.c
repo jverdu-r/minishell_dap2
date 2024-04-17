@@ -82,7 +82,7 @@ void	check_redir(t_redir *lst, char **env)
 	while (lst)
 	{
 		aux = lst->file;
-		lst->file = check_str(aux, env);
+		lst->file = check_exp_redir(aux, env);
 		free(aux);
 		lst = lst->next;
 	}
@@ -106,7 +106,6 @@ void	expander(t_toolbox *tools)
 				cmd->args[i] = check_str(cmd->args[i], tools->env);
 				i++;
 			}
-			//cmd->args = check_args(cmd->args, tools->env);
 		}
 		if (cmd->in_files)
 			check_redir(cmd->in_files, tools->env);
