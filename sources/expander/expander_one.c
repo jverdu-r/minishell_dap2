@@ -51,6 +51,7 @@ char	*check_str(char *str, char **env)
 	i = 0;
 	res = check_str_two(str, env, i, qt);
 	free(qt);
+	free(str);
 	return (trimmed(res, 0, 0));
 }
 
@@ -90,14 +91,23 @@ void	check_redir(t_redir *lst, char **env)
 void	expander(t_toolbox *tools)
 {
 	t_command	*cmd;
+	int	i;
 
 	cmd = tools->cmd;
+	i = 0;
 	while (cmd)
 	{
 		if (ft_strlen(cmd->cmd) > 2)
 			cmd->cmd = check_str(cmd->cmd, tools->env);
 		if (cmd->args)
-			cmd->args = check_args(cmd->args, tools->env);
+		{
+			while (cmd->args[i])
+			{
+				cmd->args[i] = check_str(cmd->args[i], tools->env);
+				i++;
+			}
+			//cmd->args = check_args(cmd->args, tools->env);
+		}
 		if (cmd->in_files)
 			check_redir(cmd->in_files, tools->env);
 		if (cmd->out_files)

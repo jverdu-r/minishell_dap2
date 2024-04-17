@@ -43,6 +43,8 @@ int	get_quoted(char *args, t_lexer **list, int cr)
 			break ;
 		ct[0]++;
 	}
+	if (args[ct[2] + ct[0]] == ' ')
+		ct[0]--;
 	lexer_addback(list, \
 		lexer_new(ft_substr(args, cr, ct[0] + 1), 0));
 	cr += ct[0] + 1;

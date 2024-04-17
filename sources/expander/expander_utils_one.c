@@ -55,6 +55,7 @@ char	*trimmed(char *str, int i, int j)
 		}
 	}
 	res[j] = 0;
+	free(str);
 	return (res);
 }
 
@@ -86,6 +87,7 @@ char	*var_find(char *str, int i, char **env)
 		res = ft_itoa(g_exit_status);
 	else
 		res = expnd(aux, env);
+	free(aux);
 	return (res);
 }
 
