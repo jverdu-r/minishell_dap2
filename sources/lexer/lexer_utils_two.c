@@ -39,10 +39,7 @@ void	lexer_free(t_lexer *list)
 		while (list)
 		{
 			if (list->str)
-			{
-				printf("list-> str: %p, '%s'\n",list->str, list->str);
 				free(list->str);
-			}
 			aux = list;
 			free(aux);
 			if (list->next)
@@ -50,27 +47,6 @@ void	lexer_free(t_lexer *list)
 			else
 				break ;
 		}
-
-		/*while (list->next)
-		{
-			if (list->str)
-			{
-				printf("list-> str: %p, '%s'\n",list->str, list->str);
-				free(list->str);
-			}
-			list = list->next;
-			if (list->prev)
-				free(list->prev);
-		}
-		if (!list->next)
-		{
-			if (list->str)
-			{
-				printf("list-> str: %p, '%s'\n",list->str, list->str);
-				free(list->str);
-			}
-		}
-		free(list);*/
 	}
 }
 

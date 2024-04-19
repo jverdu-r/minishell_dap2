@@ -21,7 +21,7 @@
 t_command	*parser(t_toolbox *tools);
 int			token_reader(t_toolbox *tools);
 int			token_handler(t_toolbox *tools, int i);
-t_token		check_token(char *tk, int i);
+//t_token		check_token(char *tk, int i);
 char		*fully_prompt(char *input, char c);
 t_redir     *redir_new(char *str);
 void        redir_addback(t_redir **head, t_redir *new);

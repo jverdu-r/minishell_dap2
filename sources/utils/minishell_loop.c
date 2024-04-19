@@ -14,19 +14,15 @@
 
 void	tools_reload(t_toolbox *tools)
 {
-	printf("--------0-------\n");
 	if (tools->lexer_list)
 		lexer_free(tools->lexer_list);
 	tools->lexer_list = NULL;
-	printf("--------1-------\n");
 	if (tools->args)
 		free(tools->args);
 	tools->args = NULL;
-	printf("--------2-------\n");
 	if (tools->cmd)
 		cmd_free(tools->cmd);
 	tools->cmd = NULL;
-	printf("--------3-------\n");
 }
 
 int	tools_load(t_toolbox *tools)
@@ -70,8 +66,8 @@ int	minishell_loop(t_toolbox *tools)
 					tools->cmd = parser(tools);
 					expander(tools);
 					get_fds(tools->cmd);
-					cmd_show(tools->cmd);
-					//ft_executor(tools);
+					//cmd_show(tools->cmd);
+					ft_executor(tools);
 				}
 			}
 			tools_reload(tools);

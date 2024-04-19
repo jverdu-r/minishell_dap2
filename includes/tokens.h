@@ -16,7 +16,7 @@
 #include "minishell.h"
 #include "structs.h"
 
-t_token	check_token(char *tk, int i);
+t_token	check_token(char *str, int i);
 
 t_command   *init_cmd(void);
 void    comm_addback(t_command **head, t_command *new);

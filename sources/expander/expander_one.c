@@ -68,7 +68,7 @@ char	**check_args(char **args, char **env)
 	i = 0;
 	while (args[i])
 		i++;
-	res = ft_calloc(sizeof(char *), i);
+	res = ft_calloc(sizeof(char *), i + 1);
 	i = 0;
 	while (args[i])
 	{
