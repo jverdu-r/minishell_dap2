@@ -39,7 +39,6 @@ char	*expnd(char *str, char **env)
 	int	i;
 
 	aux = ft_strjoin(str, "=");
-	free(str);
 	i = 0;
 	while (env[i])
 	{

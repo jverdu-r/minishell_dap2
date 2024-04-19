@@ -15,6 +15,7 @@
 char	*check_str_two(char *str, char **env, int i, int *qt)
 {
 	char	*aux;
+	char	*exp;
 	char	*res;
 
 	aux = init_aux();
@@ -28,7 +29,9 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 		{
 			if (str[i] == '$')
 			{
-				res = ft_strjoin(aux, var_find(str, i, env));
+				exp = var_find(str, i, env);
+				res = ft_strjoin(aux, exp);
+				free(exp);
 				i = ovarpass(str, i);
 			}
 			else
@@ -46,13 +49,15 @@ char	*check_str(char *str, char **env)
 	int		*qt;
 	int		i;
 	char	*res;
+	char	*aux;
 
 	qt = init_qt();
 	i = 0;
-	res = check_str_two(str, env, i, qt);
+	aux = check_str_two(str, env, i, qt);
 	free(qt);
 	free(str);
-	return (trimmed(res, 0, 0));
+	res = trimmed(aux, 0, 0);
+	return (res);
 }
 
 char	**check_args(char **args, char **env)
@@ -70,7 +75,7 @@ char	**check_args(char **args, char **env)
 		res[i] = check_str(args[i], env);
 		i++;
 	}
-	free_arr(args);
+	free(args);
 	res[i] = 0;
 	return (res);
 }
@@ -91,22 +96,14 @@ void	check_redir(t_redir *lst, char **env)
 void	expander(t_toolbox *tools)
 {
 	t_command	*cmd;
-	int	i;
 
 	cmd = tools->cmd;
-	i = 0;
 	while (cmd)
 	{
 		if (ft_strlen(cmd->cmd) > 2)
 			cmd->cmd = check_str(cmd->cmd, tools->env);
 		if (cmd->args)
-		{
-			while (cmd->args[i])
-			{
-				cmd->args[i] = check_str(cmd->args[i], tools->env);
-				i++;
-			}
-		}
+			cmd->args = check_args(cmd->args, tools->env);
 		if (cmd->in_files)
 			check_redir(cmd->in_files, tools->env);
 		if (cmd->out_files)

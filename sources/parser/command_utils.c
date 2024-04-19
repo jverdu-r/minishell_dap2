@@ -123,11 +123,7 @@ void	scmd_free(t_command *cmd)
 	if (cmd->in_files != NULL)
 		redir_free(cmd->in_files);
 	if (cmd->out_files != NULL)
-	{
-		printf("freeing outflie\n");
 		redir_free(cmd->out_files);
-	}
-	printf("freeing ok\n");
 	free(cmd);
 }
 

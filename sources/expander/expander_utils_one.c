@@ -72,6 +72,7 @@ char	*var_find(char *str, int i, char **env)
 	char	*aux;
 	char	*res;
 
+	
 	i++;
 	aux = ft_calloc(sizeof(char), 1);
 	aux[0] = 0;
