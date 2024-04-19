@@ -18,9 +18,10 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 	char	*exp;
 	char	*res;
 
-	aux = init_aux();
+	res = ft_strdup("");
 	while (str[i])
 	{
+		aux = res;
 		if (str[i] == '\'' || str[i] == '\"')
 			qt = switch_qt(qt, str[i]);
 		if (qt[0] == 0 && qt[1] == 1)
@@ -37,8 +38,6 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 			else
 				res = charjoin(aux, str[i]);
 		}
-		free(aux);
-		aux = res;
 		i++;
 	}
 	return (res);
@@ -64,6 +63,7 @@ char	**check_args(char **args, char **env)
 {
 	int	i;
 	char	**res;
+	char	*aux;
 
 	i = 0;
 	while (args[i])
@@ -72,7 +72,9 @@ char	**check_args(char **args, char **env)
 	i = 0;
 	while (args[i])
 	{
-		res[i] = check_str(args[i], env);
+		aux = check_str(args[i], env);
+		res[i] = ft_strdup(aux);
+		free(aux);
 		i++;
 	}
 	free(args);

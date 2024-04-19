@@ -48,6 +48,7 @@ char	*expnd(char *str, char **env)
 			free(aux);
 			aux = ft_strdup(r_var[1]);
 			free_arr(r_var);
+			free(str);
 			return (aux);
 		}
 		i++;
@@ -55,6 +56,7 @@ char	*expnd(char *str, char **env)
 	free(aux);
 	aux = malloc(sizeof(char) * 1);
 	aux[0] = 0;
+	free(str);
 	return (aux);
 }
 

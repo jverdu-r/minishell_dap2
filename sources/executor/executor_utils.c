@@ -70,12 +70,12 @@ char	**fill_args(t_command *cmd)
 			i++;
 	else
 		i++;
-	n_args = malloc(sizeof(char *) * (i + 2));
+	n_args = ft_calloc(sizeof(char *),(i + 1));
 	n_args[0] = cmd->cmd;
 	i = 1;
 	if (aux->args)
-		while (cmd->args[j])
-			n_args[i++] = cmd->args[j++];
+		while (aux->args[j])
+			n_args[i++] = aux->args[j++];
 	n_args[i] = NULL;
 	return (n_args);
 }

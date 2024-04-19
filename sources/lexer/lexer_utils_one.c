@@ -86,7 +86,7 @@ void	lexer_addback(t_lexer **head, t_lexer *new)
 {
 	t_lexer	*tmp;
 
-	if (ft_strlen(new->str) > 0 || new->token)
+	if (ft_strlen(new->str) > 0 || new->token > 0)
 	{
 		tmp = *head;
 		if (*head == NULL)

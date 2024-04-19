@@ -108,5 +108,7 @@ char	*charjoin(char *str, char c)
 	}
 	res[i] = c;
 	res[i + 1] = 0;
+	printf("str pointer: %p\n", str);
+	free(str);
 	return (res);
 }

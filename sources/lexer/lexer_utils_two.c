@@ -28,24 +28,49 @@ int	lexer_length(t_lexer *list)
 	}
 	return (i);
 }
-
+ 
 void	lexer_free(t_lexer *list)
 {
+	t_lexer *aux;
+
+
 	if (list)
 	{
-		while (list->next)
+		while (list)
 		{
-			if (list->token == 0)
+			if (list->str)
+			{
+				printf("list-> str: %p, '%s'\n",list->str, list->str);
 				free(list->str);
+			}
+			aux = list;
+			free(aux);
+			if (list->next)
+				list = list->next;
+			else
+				break ;
+		}
+
+		/*while (list->next)
+		{
+			if (list->str)
+			{
+				printf("list-> str: %p, '%s'\n",list->str, list->str);
+				free(list->str);
+			}
 			list = list->next;
-			free(list->prev);
+			if (list->prev)
+				free(list->prev);
 		}
 		if (!list->next)
 		{
-			if (list->token == 0)
+			if (list->str)
+			{
+				printf("list-> str: %p, '%s'\n",list->str, list->str);
 				free(list->str);
+			}
 		}
-		free(list);
+		free(list);*/
 	}
 }
 
@@ -63,10 +88,10 @@ void	lexer_show(t_lexer *list)
 			if (!ft_strcmp(tmp->str, " "))
 				printf("space\n");
 			else
-				printf("str: %s\n", tmp->str);
+				printf("str: %p, %s\n", tmp->str, tmp->str);
 		}
 		if (tmp->token)
-			printf("token: %d\n", tmp->token);
+			printf("token: %u, %d\n", tmp->token, tmp->token);
 		printf("\n---end node---\n");
 		tmp = tmp->next;
 	}

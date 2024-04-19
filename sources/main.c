@@ -13,27 +13,29 @@
 
 #include "../includes/minishell.h"
 
-/*void	leaks(void)
+void	leaks(void)
 {
 	system("leaks minishell");
-}*/
+}
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_toolbox	tools;
+	t_toolbox	*tools;
 
-	//atexit(leaks);
+	atexit(leaks);
 	if (argc != 1 || argv[1])
 	{
 		printf("Minishell must be executed wihtout arguments");
 		exit(0);
 	}
+	tools = ft_calloc(sizeof(t_toolbox), 1);
+	tools_load(tools);
 	if (envp[0] == 0)
-		tools.env = new_env();
+		tools->env = new_env();
 	else
-		tools.env = envp_dup(envp, &tools);
-	tools_load(&tools);
-	pwd_search(&tools);
-	minishell_loop(&tools);
+		tools->env = envp_dup(envp, tools);
+	pwd_search(tools);
+	minishell_loop(tools);
+	free(tools);
 	return (0);
 }
