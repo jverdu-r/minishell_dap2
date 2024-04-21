@@ -18,6 +18,7 @@ t_lexer	*lexer_new(char	*str, t_token token)
 	
 	new = malloc(sizeof(t_lexer));
 	if (!new)
+		return (NULL);
 	new->token = token;
 	new->str = str;
 	new->index = 0;
