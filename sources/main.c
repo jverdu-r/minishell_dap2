@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_toolbox	*tools;
 
-	//atexit(leaks);
+	atexit(leaks);
 	if (argc != 1 || argv[1])
 	{
 		printf("Minishell must be executed wihtout arguments");

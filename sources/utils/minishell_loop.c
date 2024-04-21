@@ -67,7 +67,7 @@ int	minishell_loop(t_toolbox *tools)
 					expander(tools);
 					get_fds(tools->cmd);
 					//cmd_show(tools->cmd);
-					ft_executor(tools);
+					//ft_executor(tools);
 				}
 			}
 			tools_reload(tools);
