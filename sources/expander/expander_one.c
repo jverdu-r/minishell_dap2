@@ -32,6 +32,7 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 			{
 				exp = var_find(str, i, env);
 				res = ft_strjoin(aux, exp);
+				free(aux);
 				free(exp);
 				i = ovarpass(str, i);
 			}

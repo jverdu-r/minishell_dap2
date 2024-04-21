@@ -80,7 +80,6 @@ char	*var_find(char *str, int i, char **env)
 		&& str[i] != '\"' && str[i] != '\'')
 	{
 		res = charjoin(aux, str[i]);
-		free(aux);
 		aux = res;
 		i++;
 	}
@@ -88,7 +87,6 @@ char	*var_find(char *str, int i, char **env)
 		res = ft_itoa(g_exit_status);
 	else
 		res = expnd(aux, env);
-	free(aux);
 	return (res);
 }
 
@@ -108,7 +106,6 @@ char	*charjoin(char *str, char c)
 	}
 	res[i] = c;
 	res[i + 1] = 0;
-	//printf("str pointer: %p\n", str);
 	free(str);
 	return (res);
 }
