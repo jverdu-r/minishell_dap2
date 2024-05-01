@@ -17,63 +17,77 @@ extern sig_atomic_t	g_exit_status;
 void	resolve_heredocs(t_command *cmd, char **env)
 {
 	t_command	*aux;
-	int			pid;
-	int			status;
 
-	father_workout();
 	aux = cmd;
-	pid = fork();
-	if (pid < 0)
-		(perror("minishell:"), exit(1));
-	if (pid == 0)
+
+	while (aux)
 	{
-		sig_heredoc();
-		while (aux)
-		{
-			if (aux->heredoc)
-				check_here_doc(aux, env);
-			if (aux->next)
-				aux = aux->next;
-			else
-				break ;
-		}
+		if (aux->heredoc)
+			check_here_doc(aux, env);
+		if (aux->next)
+			aux = aux->next;
+		else
+			break ;
 	}
-	else
-		waitpid(pid, &status, 0);
 }
 
 void	check_here_doc(t_command *cmd, char **env)
 {
 	int		pipe1[2];
-	char	*line;
-	char	*aux;
 	int		i;
+	int		pid;
+	int		status;
 
 	i = 0;
-	sig_heredoc();
 	while (cmd->limiter[i])
 	{
+		sig_ignire();
 		pipe(pipe1);
-		write(2, "> ", 2);
-		line = get_next_line(0);
-		while (ft_strlen(cmd->limiter[i]) != (ft_strlen(line) - 1)
-			|| ft_strncmp(line, cmd->limiter[i],
-				ft_strlen(cmd->limiter[i])))
+		pid = fork();
+		if (pid < 0)
+			(perror("minishell:"), exit(1));
+		if (pid == 0)
+			child_control(pipe1, env, cmd, i);
+		else
 		{
-			aux = expander_hdoc(line, env);
-			write(2, "> ", 2);
-			ft_putstr_fd(aux, pipe1[1]);
-			free(aux);
-			line = get_next_line(0);
+			(close(pipe1[1]));
+			if (cmd->limiter[i + 1])
+				close(pipe1[0]);
+			waitpid(pid, &status, 0);
+			i++;
 		}
-		free(line);
-		close(pipe1[1]);
-		if (cmd->limiter[i + 1])
-			close(pipe1[0]);
-		i++;
 	}
 	if (cmd->limiter)
 		cmd->heredoc = pipe1[0];
+}
+
+void	child_control(int *pipe1, char **env, t_command *cmd, int i)
+{
+	char	*line;
+	char	*aux;
+
+	sig_heredoc();
+	write(2, "> ", 2);
+	line = get_next_line(0);
+	while (ft_strlen(cmd->limiter[i]) != (ft_strlen(line) - 1)
+		|| ft_strncmp(line, cmd->limiter[i],
+			ft_strlen(cmd->limiter[i])))
+	{
+		if (line == NULL)
+		{
+			printf("\n");
+			exit(0);
+		}
+		aux = expander_hdoc(line, env);
+		write(2, "> ", 2);
+		ft_putstr_fd(aux, pipe1[1]);
+		free(aux);
+		line = get_next_line(0);
+	}
+	free(line);
+	close(pipe1[1]);
+	close(pipe1[0]);
+	exit(0);
 }
 
 // void	check_here_doc(t_command *cmd, char **env)

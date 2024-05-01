@@ -45,6 +45,7 @@ void		sig_heredoc(void);
 void		signals_workout(void);
 void   		child_signals(void);
 void    	father_workout(void);
+void		sig_ignire(void);
 
 //loop functions
 int		minishell_loop(t_toolbox *tools);

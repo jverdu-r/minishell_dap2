@@ -11,18 +11,18 @@
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
-#define BUILTINS_H
+# define BUILTINS_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
-#include <limits.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/wait.h>
-#include "libft/libft.h"
-#include "tokens.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <signal.h>
+# include <limits.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/wait.h>
+# include "libft/libft.h"
+# include "tokens.h"
 
 
 //Here_doc
@@ -34,18 +34,19 @@ char	*find_variable(char *str, unsigned int i);
 char	*expander_hdoc(char *str, char **env);
 char	*check_env(char *str, char **env);
 void	resolve_heredocs(t_command *cmd, char **env);
+void	child_control(int *pipe1, char **env, t_command *cmd, int i);
 
 //built-ins funcion
 //  echo
-int 	ft_echo(t_command *cmd);
+int		ft_echo(t_command *cmd);
 void	print_arguments(char **arg, int i, int out_fd);
 //  pwd
 int		ft_pwd(void);
 // 	env
-int 	ft_env(char **env);
-int     check_equal_env(char *env);
+int		ft_env(char **env);
+int		check_equal_env(char *env);
 //	export
-int 	ft_export(t_toolbox *tools);
+int		ft_export(t_toolbox *tools);
 char	**add_variable(char **sort_env, char *cmd_arg);
 void	print_export(char **env);
 void	export_error(char *cmd_arg);
@@ -55,14 +56,14 @@ int		check_parametres(char *cmd_arg);
 char	**delete_variable(char **env, int i);
 
 // unset
-int 	ft_unset(t_toolbox *tools);
+int		ft_unset(t_toolbox *tools);
 char	**delete_variable(char **env, int i);
-int     ft_check_equal(char *arg);
+int		ft_check_equal(char *arg);
 
 // cd
-int 	ft_cd(t_toolbox *tools);
+int		ft_cd(t_toolbox *tools);
 void	render_env(t_toolbox *tools);
 char	*get_env_dir(t_toolbox *tools, char *arg);
-char    *get_absolute_dir(t_toolbox *tools);
+char	*get_absolute_dir(t_toolbox *tools);
 
 #endif

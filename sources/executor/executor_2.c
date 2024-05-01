@@ -77,7 +77,7 @@ void	manage_dups(t_command *cmd, int *pre_pipe, int *ac_pipe)
 			(perror("minishell:"), exit(1));
 		close(ac_pipe[1]);
 	}
-	if (cmd->in_fd > 2 && ft_strcmp("echo", cmd->cmd))
+	if (cmd->in_fd > 2)
 	{
 		if (dup2(cmd->in_fd, 0) < 0)
 			(perror("minishell:"), exit(1));
