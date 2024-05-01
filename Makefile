@@ -89,6 +89,7 @@ clean:		localclean
 fclean:		localclean
 			@$(MAKE) fclean -s -C $(LIBFT)
 			@echo "Full clean libft."
+			@$(RM) $(GNLOBJ)
 			@$(RM) $(NAME)
 			@echo "Removed excutable file."
 

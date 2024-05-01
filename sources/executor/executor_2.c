@@ -77,13 +77,13 @@ void	manage_dups(t_command *cmd, int *pre_pipe, int *ac_pipe)
 			(perror("minishell:"), exit(1));
 		close(ac_pipe[1]);
 	}
-	if (cmd->in_fd > 2)
+	if (cmd->in_fd > 2 && ft_strcmp("echo", cmd->cmd))
 	{
 		if (dup2(cmd->in_fd, 0) < 0)
 			(perror("minishell:"), exit(1));
 		close(cmd->in_fd);
 	}
-	if (cmd->out_fd > 2)
+	if (cmd->out_fd > 2 && ft_strcmp("echo", cmd->cmd))
 	{
 		if (dup2(cmd->out_fd, 1) < 0)
 			(perror("minishell:"), exit(1));

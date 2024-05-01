@@ -18,6 +18,7 @@ void	print_arguments(char **arg, int i, int out_fd)
 {
 	while (arg[i])
 	{
+		//dprintf(2, "argument: %s\n", arg[i]);
 		ft_putstr_fd(arg[i], out_fd);
 		if (arg[i + 1])
 			ft_putchar_fd(' ', out_fd);
@@ -35,6 +36,7 @@ int	ft_echo(t_command *cmd)
 	i = 0;
 	if (cmd->args != NULL)
 	{
+		//dprintf(2, "fd_out: %i\n", cmd->out_fd);
 		while (cmd->args[i] && !ft_strncmp(cmd->args[i], "-n", 2))
 		{
 			j = 1;

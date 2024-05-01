@@ -43,7 +43,7 @@ void	check_out_fd(t_command *cmd)
 	t_redir	*out_files;
 
 	out_files = cmd->out_files;
-	
+
 	while (out_files)
 	{
 		if (cmd->app == 1)
@@ -61,7 +61,7 @@ void	check_out_fd(t_command *cmd)
 		if (out_files->next)
 			out_files = out_files->next;
 		else
-			break;
+			break ;
 	}
 }
 
