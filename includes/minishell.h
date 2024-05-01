@@ -33,7 +33,7 @@
 # include "GetNextLine/get_next_line.h"
 
 //global
-volatile sig_atomic_t	g_exit_status;
+//volatile sig_atomic_t	g_exit_status;
 
 //test
 t_command	*cmd_extract(t_lexer *list);

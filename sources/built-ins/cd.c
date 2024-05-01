@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 char	*get_env_dir(t_toolbox *tools, char *arg)
 {
 	int	i;

@@ -16,10 +16,8 @@ void	ft_executor_loop(t_command *cmd, t_toolbox *tools)
 {
 	int			ac_pipe[2];
 	t_command	*cmd_aux;
-	int			i;
 	int			status;
 
-	i = 0;
 	cmd_aux = cmd;
 	pipe(ac_pipe);
 	recursive_ex(ac_pipe, cmd_aux, tools);

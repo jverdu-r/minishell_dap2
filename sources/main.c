@@ -13,6 +13,8 @@
 
 #include "../includes/minishell.h"
 
+sig_atomic_t	g_exit_status;
+
 void	leaks(void)
 {
 	system("leaks minishell");

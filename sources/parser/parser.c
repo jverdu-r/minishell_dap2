@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 t_command	*cmd_list(t_lexer *list)
 {
 	t_command	*cmd;

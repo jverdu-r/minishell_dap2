@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 int	is_white_space(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v' \

@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 char	*check_str_two(char *str, char **env, int i, int *qt)
 {
 	char	*aux;

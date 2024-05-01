@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 t_lexer	*lexer_new(char	*str, t_token token)
 {
 	t_lexer	*new;

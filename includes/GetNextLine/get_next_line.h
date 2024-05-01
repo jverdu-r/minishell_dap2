@@ -21,7 +21,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
-# include <xlocale.h>
+//# include <xlocale.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>  

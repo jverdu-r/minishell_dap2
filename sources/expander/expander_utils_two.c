@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 int	ovarpass(char *str, int i)
 {
 	while (!is_space(str[i]) && str[i] != '\"' \

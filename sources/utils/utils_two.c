@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 char	*fully_prompt(char *input, char c)
 {
 	char	*aux;

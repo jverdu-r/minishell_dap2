@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 int	check_in_fd(t_redir *redir)
 {
 	t_redir	*in_files;

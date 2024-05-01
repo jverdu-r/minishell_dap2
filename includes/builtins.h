@@ -20,6 +20,7 @@
 #include <limits.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <sys/wait.h>
 #include "libft/libft.h"
 #include "tokens.h"
 

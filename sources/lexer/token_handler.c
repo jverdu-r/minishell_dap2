@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 t_token	check_token(char *tk, int i)
 {
 	if (tk[i] == '|')

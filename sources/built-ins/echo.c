@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 void	print_arguments(char **arg, int i, int out_fd)
 {
 	while (arg[i])

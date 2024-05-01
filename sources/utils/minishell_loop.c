@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 void	tools_reload(t_toolbox *tools)
 {
 	if (tools->lexer_list)

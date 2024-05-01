@@ -12,6 +12,8 @@
 
 #include "../../includes/minishell.h"
 
+extern sig_atomic_t	g_exit_status;
+
 int	pwd_search(t_toolbox *tools)
 {
 	int	i;
