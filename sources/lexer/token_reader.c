@@ -3,33 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   token_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/11/27 18:31:21 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:39:01 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
-
 int	is_white_space(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' \
-			|| c == '\f' || c == '\r' || c == ' ')
+	if (c == '\t' || c == '\n' || c == '\v' || \
+		c == '\f' || c == '\r' || c == ' ')
 		return (1);
 	return (0);
 }
 
-int	get_quoted(char *args, t_lexer **list, int cr)
+int	get_quoted(char *args, t_lexer **list, int cr, int *ct)
 {
 	char	cqt;
-	int	ct[3];
 
-	ct[0] = 1;
-	ct[1] = 1;
-	ct[2] = cr;
 	cqt = args[cr];
 	while (args[ct[2] + ct[0]])
 	{
@@ -50,6 +44,7 @@ int	get_quoted(char *args, t_lexer **list, int cr)
 	lexer_addback(list, \
 		lexer_new(ft_substr(args, cr, ct[0] + 1), 0));
 	cr += ct[0] + 1;
+	free(ct);
 	return (cr);
 }
 
@@ -75,7 +70,7 @@ void	read_words(char *args, t_lexer **list)
 	while (args[cr])
 	{
 		if (args[cr] == '\"' || args[cr] == '\'')
-			cr = get_quoted(args, list, cr);
+			cr = get_quoted(args, list, cr, init_ct(cr));
 		else if (check_token(args, cr))
 		{
 			lexer_addback(list, \

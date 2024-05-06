@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 10:25:27 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/03/06 20:07:25 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/03 01:22:02 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_command
 	int					app;
 	int					heredoc;
 	char				**limiter;
+	int					check_lim;
 	char				**args;
 	int					out_fd;
 	int					in_fd;
@@ -52,7 +53,7 @@ typedef enum s_bool
 	TRUE = 1
 }	t_bool;
 
-typedef struct	s_lexer
+typedef struct s_lexer
 {
 	char			*str;
 	t_token			token;
@@ -61,7 +62,7 @@ typedef struct	s_lexer
 	struct s_lexer	*prev;
 }	t_lexer;
 
-typedef struct	s_toolbox
+typedef struct s_toolbox
 {
 	char		*args;
 	char		**env;

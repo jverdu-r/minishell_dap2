@@ -12,8 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
-
 int	check_in_fd(t_redir *redir)
 {
 	t_redir	*in_files;
@@ -43,18 +41,17 @@ void	check_out_fd(t_command *cmd)
 	t_redir	*out_files;
 
 	out_files = cmd->out_files;
-
 	while (out_files)
 	{
 		if (cmd->app == 1)
 		{
-			cmd->out_fd  = open(out_files->file, O_WRONLY | O_APPEND 
-				| O_CREAT, 0644);
+			cmd->out_fd = open(out_files->file, O_WRONLY | O_APPEND | \
+				O_CREAT, 0644);
 		}
 		else
 		{
-			cmd->out_fd = open(out_files->file, O_CREAT | O_WRONLY
-					| O_TRUNC, 0644);
+			cmd->out_fd = open(out_files->file, O_CREAT | O_WRONLY | \
+				O_TRUNC, 0644);
 		}
 		if (out_files->next)
 			close(cmd->out_fd);

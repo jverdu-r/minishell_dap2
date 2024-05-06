@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/03/21 13:55:23 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/03 23:53:57 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	simple_command(t_toolbox *tools, t_command *cmd)
 	{
 		child_signals();
 		manage_dups(cmd, NULL, NULL);
-		if (cmd->heredoc && !cmd->args && cmd->in_fd <= 2)
+		if (cmd->heredoc && !cmd->args)
 		{
 			if (dup2(cmd->heredoc, 0) < 0)
 				(perror("minishell"), exit(1));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:28:22 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/10/17 12:18:55 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:55:58 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,15 @@ void	lexer_show(t_lexer *list)
 		tmp = tmp->next;
 	}
 	printf("\n");
+}
+
+int	*init_ct(int cr)
+{
+	int		*ct;
+	
+	ct = ft_calloc(sizeof(int), 3);
+	ct[0] = 1;
+	ct[1] = 1;
+	ct[2] = cr;
+	return (ct);
 }

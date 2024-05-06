@@ -86,9 +86,7 @@ int		ft_cd(t_toolbox *tools)
 			ft_putstr_fd(" not set\n", 2);
 		}
 		else
-		{
 			render_env(tools);
-		}
 	}
 	return (EXIT_SUCCESS);
 }

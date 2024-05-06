@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daparici <daparici@student.42.fr>          +#+  +:+       +#+         #
+#    By: jorge <jorge@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 15:20:41 by jverdu-r          #+#    #+#              #
-#    Updated: 2024/03/20 18:52:34 by daparici         ###   ########.fr        #
+#    Updated: 2024/05/06 12:02:03 by jorge            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ GNLPATH = $(addprefix ./includes/GetNextLine/,$(GNL))
 
 SRCS	=	sources/main.c \
 			sources/utils/signals.c \
+			sources/utils/signals_two.c \
 			sources/utils/minishell_loop.c \
 			sources/utils/utils.c \
 			sources/utils/utils_two.c \
@@ -57,6 +58,7 @@ SRCS	=	sources/main.c \
 			sources/built-ins/unset.c \
 			sources/built-ins/cd.c \
 			sources/built-ins/here_doc.c \
+			sources/built-ins/here_doc_2.c \
 
 OBJS	=	$(SRCS:%.c=%.o)
 GNLOBJ 	= 	$(GNLPATH:.c=.o)

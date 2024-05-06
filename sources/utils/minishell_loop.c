@@ -41,6 +41,14 @@ int	exit_code(void)
 	exit(0);
 }
 
+void	routine(t_toolbox *tools)
+{
+	tools->cmd = parser(tools);
+	expander(tools);
+	get_fds(tools->cmd);
+	ft_executor(tools);
+}
+
 int	minishell_loop(t_toolbox *tools)
 {
 	int		exit;
@@ -54,9 +62,7 @@ int	minishell_loop(t_toolbox *tools)
 		if (!tools->args && exit == 0)
 			return (exit_code());
 		else if (tools->args && ft_strcmp(tools->args, "") == 0)
-		{
 			free(tools->args);
-		}
 		else if (tools->args)
 		{
 			add_history(tools->args);
@@ -64,17 +70,10 @@ int	minishell_loop(t_toolbox *tools)
 			{
 				token_reader(tools);
 				if (!check_syntax(tools->lexer_list))
-				{
-					tools->cmd = parser(tools);
-					expander(tools);
-					get_fds(tools->cmd);
-					//cmd_show(tools->cmd);
-					ft_executor(tools);
-				}
+					routine(tools);
 			}
 			tools_reload(tools);
 		}
-		//system("leaks minishell");
 	}
 	return (0);
 }

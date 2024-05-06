@@ -70,7 +70,7 @@ char	**fill_args(t_command *cmd)
 			i++;
 	else
 		i++;
-	n_args = ft_calloc(sizeof(char *),(i + 1));
+	n_args = ft_calloc(sizeof(char *), (i + 1));
 	n_args[0] = cmd->cmd;
 	i = 1;
 	if (aux->args)

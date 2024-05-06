@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:23:21 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/03/20 19:40:33 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/03 23:53:50 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	manage_params_child(t_toolbox *tools, t_command *cmd)
 	char	**path_rutes;
 	char	*path_rute;
 
-
 	cmd_arg = fill_args(cmd);
 	if (!cmd_arg)
 		(perror("minishell:"), exit(1));
@@ -130,5 +129,3 @@ void	heredoc_child(int *pre_p, int *ac_p, t_command *cmd)
 		close(cmd->heredoc);
 	}
 }
-
-

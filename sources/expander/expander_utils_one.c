@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:21:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/11/22 17:49:11 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/03 01:03:03 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char	*var_find(char *str, int i, char **env)
 	char	*aux;
 	char	*res;
 
-	
 	i++;
 	aux = ft_calloc(sizeof(char), 1);
 	aux[0] = 0;
@@ -95,8 +94,8 @@ char	*var_find(char *str, int i, char **env)
 char	*charjoin(char *str, char c)
 {
 	char	*res;
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 
 	len = ft_strlen(str);
 	res = ft_calloc(sizeof(char), len + 2);

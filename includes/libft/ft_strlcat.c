@@ -35,4 +35,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	if (ldst < dstsize)
 		dst[ldst] = 0;
 	return (res);
-}	
+}

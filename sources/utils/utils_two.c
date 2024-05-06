@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/11/29 16:22:57 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:28:48 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-extern sig_atomic_t	g_exit_status;
 
 char	*fully_prompt(char *input, char c)
 {
@@ -64,4 +62,27 @@ void	sort_arr(char **arr)
 		}
 		i++;
 	}
+}
+
+char	*get_home(void)
+{
+	char	*aux;
+	char	*home;
+	char	*dir;
+	int		i[2];
+
+	i[0] = 0;
+	i[1] = 0;
+	dir = getcwd(NULL, 0);
+	while (dir[i[0]] && i[1] <= 2)
+	{
+		if (dir[i[0]] == '/')
+			i[1]++;
+		i[0]++;
+	}
+	aux = ft_substr(dir, 0, i[0]);
+	home = ft_strjoin("HOME=", aux);
+	free(aux);
+	free(dir);
+	return (home);
 }

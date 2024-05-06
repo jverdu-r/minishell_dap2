@@ -12,8 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
-
 t_redir	*redir_new(char *str)
 {
 	t_redir	*new;

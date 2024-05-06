@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:56:27 by daparici          #+#    #+#             */
-/*   Updated: 2024/03/20 18:46:59 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/03 00:37:46 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "libft/libft.h"
 # include "tokens.h"
 
-
 //Here_doc
 char	*heredoc_loop(t_command *cmd, char **env);
 char	*heredoc(char *input, char *lim);
@@ -32,6 +31,8 @@ void	check_here_doc(t_command *cmd, char **env);
 void	heredoc_child(int *pre_p, int *ac_p, t_command *cmd);
 char	*find_variable(char *str, unsigned int i);
 char	*expander_hdoc(char *str, char **env);
+int		expander_hdoc_2(char *str, int i);
+char	*expander_hdoc_3(char *str, char **env, char *expand_str, int i);
 char	*check_env(char *str, char **env);
 void	resolve_heredocs(t_command *cmd, char **env);
 void	child_control(int *pipe1, char **env, t_command *cmd, int i);
@@ -65,5 +66,4 @@ int		ft_cd(t_toolbox *tools);
 void	render_env(t_toolbox *tools);
 char	*get_env_dir(t_toolbox *tools, char *arg);
 char	*get_absolute_dir(t_toolbox *tools);
-
 #endif

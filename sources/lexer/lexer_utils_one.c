@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:21:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/10/17 12:16:59 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:57:32 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
-
 t_lexer	*lexer_new(char	*str, t_token token)
 {
 	t_lexer	*new;
-	
+
 	new = malloc(sizeof(t_lexer));
 	if (!new)
 		return (NULL);
@@ -37,7 +35,12 @@ t_lexer	*lexer_last(t_lexer *list)
 		return (NULL);
 	tmp = list;
 	while (tmp->next)
-		tmp = tmp->next;
+	{
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			break ;
+	}
 	return (tmp);
 }
 
@@ -87,13 +90,7 @@ void	lexer_addback(t_lexer **head, t_lexer *new)
 			*head = new;
 		else
 		{
-			while (tmp->next)
-			{
-				if (tmp->next)
-					tmp = tmp->next;
-				else
-					break ;
-			}
+			tmp = lexer_last(tmp);
 			tmp->next = new;
 			new->index = tmp->index + 1;
 			new->prev = tmp;

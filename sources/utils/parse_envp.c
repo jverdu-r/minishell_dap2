@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_envp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:33:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/12/05 18:16:13 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:28:44 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,6 @@ int	pwd_search(t_toolbox *tools)
 		i++;
 	}
 	return (i);
-}
-
-char	*get_home(void)
-{
-	char	*aux;
-	char	*home;
-	char	*dir;
-	int		i[2];
-
-	i[0] = 0;
-	i[1] = 0;
-	dir = getcwd(NULL, 0);
-	while (dir[i[0]] && i[1] <= 2)
-	{
-		if (dir[i[0]] == '/')
-			i[1]++;
-		i[0]++;
-	}
-	aux = ft_substr(dir, 0, i[0]);
-	home = ft_strjoin("HOME=", aux);
-	free(aux);
-	free(dir);
-	return (home);
 }
 
 char	**new_env(void)

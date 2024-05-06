@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #ifndef TOKENS_H
-#define TOKENS_H
+# define TOKENS_H
 
-#include "minishell.h"
-#include "structs.h"
+# include "minishell.h"
+# include "structs.h"
 
-t_token	check_token(char *str, int i);
-
-t_command   *init_cmd(void);
-void    comm_addback(t_command **head, t_command *new);
-void    cmd_show(t_command *cmd);
-void    cmd_free(t_command *cmd);
+t_token			check_token(char *str, int i);
+t_command		*init_cmd(void);
+void			comm_addback(t_command **head, t_command *new);
+void			cmd_show(t_command *cmd);
+void			cmd_free(t_command *cmd);
 
 #endif
