@@ -6,7 +6,7 @@
 #    By: jorge <jorge@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 15:20:41 by jverdu-r          #+#    #+#              #
-#    Updated: 2024/05/06 12:02:03 by jorge            ###   ########.fr        #
+#    Updated: 2024/05/07 10:45:55 by jorge            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS	=	sources/main.c \
 			sources/expander/expander_one.c \
 			sources/expander/expander_utils_one.c \
 			sources/expander/expander_utils_two.c \
+			sources/expander/expander_utils_three.c \
 			sources/built-ins/echo.c \
 			sources/executor/executor.c \
 			sources/executor/executor_2.c \

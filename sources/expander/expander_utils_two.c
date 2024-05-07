@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_two.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/11/16 19:26:12 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:00:48 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-extern sig_atomic_t	g_exit_status;
 
 int	ovarpass(char *str, int i)
 {
@@ -36,9 +34,9 @@ int	*init_qt(void)
 
 char	*expnd(char *str, char **env)
 {
+	int		i;
 	char	*aux;
 	char	**r_var;
-	int	i;
 
 	aux = ft_strjoin(str, "=");
 	i = 0;

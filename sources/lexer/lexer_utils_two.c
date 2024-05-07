@@ -12,8 +12,6 @@
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
-
 int	lexer_length(t_lexer *list)
 {
 	int			i;
@@ -30,11 +28,10 @@ int	lexer_length(t_lexer *list)
 	}
 	return (i);
 }
- 
+
 void	lexer_free(t_lexer *list)
 {
-	t_lexer *aux;
-
+	t_lexer	*aux;
 
 	if (list)
 	{
@@ -79,7 +76,7 @@ void	lexer_show(t_lexer *list)
 int	*init_ct(int cr)
 {
 	int		*ct;
-	
+
 	ct = ft_calloc(sizeof(int), 3);
 	ct[0] = 1;
 	ct[1] = 1;

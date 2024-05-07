@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expander_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2023/11/16 19:09:38 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:48:14 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
-
 char	*check_str_two(char *str, char **env, int i, int *qt)
 {
 	char	*aux;
-	char	*exp;
 	char	*res;
 
 	res = ft_strdup("");
@@ -32,10 +29,7 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 		{
 			if (str[i] == '$')
 			{
-				exp = var_find(str, i, env);
-				res = ft_strjoin(aux, exp);
-				free(aux);
-				free(exp);
+				res = var_exp(str, aux, i, env);
 				i = ovarpass(str, i);
 			}
 			else
@@ -64,7 +58,7 @@ char	*check_str(char *str, char **env)
 
 char	**check_args(char **args, char **env)
 {
-	int	i;
+	int		i;
 	char	**res;
 	char	*aux;
 

@@ -110,7 +110,7 @@ void	manage_params_child(t_toolbox *tools, t_command *cmd)
 	cmd_rute = find_path(cmd->cmd, path_rutes);
 	if (!cmd_rute)
 		(perror("minishell:"), exit(1));
-	if (execve(cmd_rute, cmd_arg, tools->env) < 0) 
+	if (execve(cmd_rute, cmd_arg, tools->env) < 0)
 		(perror("minishell:"), exit(1));
 }
 
