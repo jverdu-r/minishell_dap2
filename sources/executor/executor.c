@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/03 23:53:57 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:02:27 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	ft_is_builtin(t_command *cmd)
 		return (0);
 	else if (ft_strcmp(cmd->cmd, "cd") == 0)
 		return (0);
+	else if (ft_strcmp(cmd->cmd, "exit") == 0)
+		return (0);
 	else
 		return (1);
 }
@@ -86,4 +88,6 @@ void	ft_is_builtin_2(t_toolbox *tools, t_command *cmd)
 		ft_unset(tools);
 	else if (ft_strcmp(cmd->cmd, "cd") == 0)
 		ft_cd(tools);
+	else if (ft_strcmp(cmd->cmd, "exit") == 0)
+		m_exit(tools, cmd);
 }

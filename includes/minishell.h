@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:07:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/06 12:01:38 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/07 17:37:38 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char		**new_env(void);
 char		*get_home(void);
 void		sort_arr(char **arr);
 //utility functions
+int		exit_code(void);
+
 //char		*expander(t_toolbox *tools, char *str);
 void		free_arr(char **arr);
 int			handle_quotes(char *input);

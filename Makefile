@@ -6,7 +6,7 @@
 #    By: jorge <jorge@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 15:20:41 by jverdu-r          #+#    #+#              #
-#    Updated: 2024/05/07 10:45:55 by jorge            ###   ########.fr        #
+#    Updated: 2024/05/07 16:48:29 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS	=	sources/main.c \
 			sources/built-ins/cd.c \
 			sources/built-ins/here_doc.c \
 			sources/built-ins/here_doc_2.c \
+			sources/built-ins/exit.c \
 
 OBJS	=	$(SRCS:%.c=%.o)
 GNLOBJ 	= 	$(GNLPATH:.c=.o)

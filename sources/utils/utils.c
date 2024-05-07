@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/03/20 19:08:36 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:58:41 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	check_input(t_toolbox *tools)
 	input = readline("minishell>");
 	if (input)
 	{
-		if (ft_strcmp("exit", input) == 0)
-			exit(0);
+		/*if (ft_strcmp("exit", input) == 0)
+			exit(0);*/
 		if (input[ft_strlen(input) - 1] == '|')
 		{
 			aux = fully_prompt(input, '|');

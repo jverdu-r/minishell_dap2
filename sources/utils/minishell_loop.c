@@ -6,10 +6,11 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/03/21 14:00:21 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:57:03 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/minishell.h"
 #include "../../includes/minishell.h"
 
 extern sig_atomic_t	g_exit_status;
