@@ -40,9 +40,11 @@ void	lexer_free(t_lexer *list)
 			if (list->str)
 				free(list->str);
 			aux = list;
-			free(aux);
 			if (list->next)
+			{
 				list = list->next;
+				free(aux);
+			}
 			else
 				break ;
 		}

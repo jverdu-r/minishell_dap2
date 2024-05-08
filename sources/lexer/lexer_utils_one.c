@@ -16,7 +16,7 @@ t_lexer	*lexer_new(char	*str, t_token token)
 {
 	t_lexer	*new;
 
-	new = malloc(sizeof(t_lexer));
+	new = ft_calloc(sizeof(t_lexer), 1);
 	if (!new)
 		return (NULL);
 	new->token = token;

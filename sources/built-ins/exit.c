@@ -18,7 +18,6 @@ int m_exit(t_toolbox *tools, t_command *cmd)
     {
 	tools_reload(tools);
 	free(tools);
-	rl_clear_history();
 	return(exit_code());
     }
     else

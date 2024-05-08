@@ -47,6 +47,7 @@ void	routine(t_toolbox *tools)
 	tools->cmd = parser(tools);
 	expander(tools);
 	get_fds(tools->cmd);
+	//cmd_show(tools->cmd);
 	ft_executor(tools);
 }
 

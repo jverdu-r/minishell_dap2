@@ -20,7 +20,7 @@ LIBFT_A	=	$(addprefix $(LIBFT), libft.a)
 
 INCLUDE	=	includes -I $(READ)/include
 
-CFLAGS	=	-Wall -Werror -Wextra -g3 -I$(INCLUDE) -g
+CFLAGS	=	-Wall -Werror -Wextra -g3 -I$(INCLUDE) -fsanitize=address  -g3
 
 RM		=	rm -f
 
