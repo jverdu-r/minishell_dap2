@@ -6,7 +6,7 @@
 #    By: jorge <jorge@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 15:20:41 by jverdu-r          #+#    #+#              #
-#    Updated: 2024/05/07 16:48:29 by jverdu-r         ###   ########.fr        #
+#    Updated: 2024/05/08 16:29:13 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_A	=	$(addprefix $(LIBFT), libft.a)
 
 INCLUDE	=	includes -I $(READ)/include
 
-CFLAGS	=	-Wall -Werror -Wextra -g3 -I$(INCLUDE) -fsanitize=address  -g3
+CFLAGS	=	-Wall -Werror -Wextra -g3 -I$(INCLUDE) -fsanitize=address  -ggdb
 
 RM		=	rm -f
 

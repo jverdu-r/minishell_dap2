@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_envp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:33:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/06 12:28:44 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/08 17:59:00 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	pwd_search(t_toolbox *tools)
 					7, ft_strlen(tools->env[i]) - 7);
 		if (!ft_strncmp(tools->env[i], "HOME=", 5))
 			tools->home_dir = ft_substr(tools->env[i],
-					5, ft_strlen(tools->env[i] - 5));
+					5, ft_strlen(tools->env[i]) - 5);
 		i++;
 	}
 	return (i);
@@ -98,7 +98,7 @@ char	**envp_dup(char	**envp, t_toolbox *tools)
 	i = 0;
 	while (envp[i])
 		i++;
-	tmp = ft_calloc(sizeof(char *), i + 1);
+	tmp = ft_calloc(sizeof(char *), i + 2);
 	if (!tmp)
 		return (NULL);
 	i = 0;
@@ -112,6 +112,7 @@ char	**envp_dup(char	**envp, t_toolbox *tools)
 		}
 		i++;
 	}
+	tmp[i] = 0;
 	tools->env = tmp;
 	return (tmp);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:30:53 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/07 18:09:44 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:00:11 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ int m_exit(t_toolbox *tools, t_command *cmd)
 {
     if (!cmd->args)
     {
-	tools_reload(tools);
-	free(tools);
-	return(exit_code());
+        free(tools->old_pwd);
+        free(tools->home_dir);
+        free(tools->pwd);
+        free_arr(tools->env);
+	    tools_reload(tools);
+	    free(tools);
+	    return(exit_code());
     }
     else
     {
-	printf("minishell exit error: too many arguments\n");
-	return (EXIT_FAILURE);
+	    printf("minishell exit error: too many arguments\n");
+	    return (EXIT_FAILURE);
     }
 }

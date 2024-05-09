@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 20:14:28 by daparici          #+#    #+#             */
-/*   Updated: 2022/06/23 13:50:14 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:11:08 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_getreserv(char *res)
 char	*ft_copystr(int fd, char *res)
 {
 	char	*copy;
+	char	*aux;
 	int		len;
 
 	copy = malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -56,9 +57,10 @@ char	*ft_copystr(int fd, char *res)
 			return (NULL);
 		}
 		copy[len] = '\0';
-		res = ft_strjoinnew(res, copy);
+		aux = res;
+		res = ft_strjoinnew(aux, copy);
+		free(copy);
 	}
-	free(copy);
 	return (res);
 }
 

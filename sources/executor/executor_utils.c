@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:21:02 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/03/20 19:39:04 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:41:58 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**fill_args(t_command *cmd)
 			i++;
 	else
 		i++;
-	n_args = ft_calloc(sizeof(char *), (i + 1));
+	n_args = ft_calloc(sizeof(char *), (i + 2));
 	n_args[0] = cmd->cmd;
 	i = 1;
 	if (aux->args)

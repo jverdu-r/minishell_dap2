@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:59:56 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/07 10:45:26 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/08 18:11:25 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ char	*init_aux(void);
 char	*check_exp_redir(char *str, char **env);
 char	*check_str_two(char *str, char **env, int i, int *qt);
 char	*var_exp(char *str, char *aux, int i, char **env);
+char	*check_str(char *str, char **env);
 #endif

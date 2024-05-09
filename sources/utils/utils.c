@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/07 17:58:41 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:40:34 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	free_arr(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	while (arr[i] != 0)
 	{
-		free(arr[i]);
+		if (arr[i])
+			free(arr[i]);
 		i++;
 	}
 	free(arr);
@@ -67,8 +68,6 @@ int	check_input(t_toolbox *tools)
 	input = readline("minishell>");
 	if (input)
 	{
-		/*if (ft_strcmp("exit", input) == 0)
-			exit(0);*/
 		if (input[ft_strlen(input) - 1] == '|')
 		{
 			aux = fully_prompt(input, '|');

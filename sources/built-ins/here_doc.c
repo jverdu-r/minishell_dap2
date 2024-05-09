@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:03:10 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/03 22:39:16 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:13:27 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	child_control(int *pipe1, char **env, t_command *cmd, int i)
 		write(2, "> ", 2);
 		ft_putstr_fd(aux, pipe1[1]);
 		free(aux);
+		free(line);
 		line = get_next_line(0);
 	}
 	(free(str_trimed), free(line), close(pipe1[1]), close(pipe1[0]));
