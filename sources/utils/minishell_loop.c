@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/07 17:57:03 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:08:00 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,19 @@ int	exit_code(void)
 void	routine(t_toolbox *tools)
 {
 	tools->cmd = parser(tools);
-	expander(tools);
 	get_fds(tools->cmd);
-	//cmd_show(tools->cmd);
+	cmd_show(tools->cmd);
 	ft_executor(tools);
 }
 
 int	minishell_loop(t_toolbox *tools)
 {
-	int		exit;
-
 	while (1)
 	{
-		exit = 0;
 		g_exit_status = 0;
 		signals_workout();
-		exit = check_input(tools);
-		if (!tools->args && exit == 0)
-			return (exit_code());
-		else if (tools->args && ft_strcmp(tools->args, "") == 0)
+		check_input(tools);
+		if (tools->args && ft_strcmp(tools->args, "") == 0)
 			free(tools->args);
 		else if (tools->args)
 		{

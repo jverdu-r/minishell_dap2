@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/08 17:46:48 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:17:34 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*fully_prompt(char *input, char c)
 	{
 		while (input[ft_strlen(input) - 1] == '|')
 		{
-			aux = readline(">");
+			aux = get_input(readline(">"));
 			pipe = input;
 			input = ft_strjoin(pipe, aux);
 			free(pipe);

@@ -3,15 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/08 17:40:34 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:23:46 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+char *get_input(char *str)
+{
+	int		len;
+	int		i;
+	char	*res;
+
+	if (str == NULL)
+		return(NULL);
+	len = ft_strlen(str);
+	res = ft_calloc(sizeof(char *), len);
+	i = 0;
+	while (i < len)
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[len] = 0;
+	free(str);
+	return (res);
+}
 int	handle_quotes(char *input)
 {
 	int	qt;
@@ -53,27 +73,33 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-int	check_input_end(char c)
+int	check_input_end(char *c)
 {
-	if (c == '<' || c == '>')
+	int	len;
+
+	len = ft_strlen(c) - 1;
+	if (c[len] == '<' || c[len] == '>' || c[len] == '|')
 		return (0);
 	return (1);
 }
 
+
 int	check_input(t_toolbox *tools)
 {
-	char	*aux;
+	//char	*aux;
 	char	*input;
 
-	input = readline("minishell>");
-	if (input)
+	input = get_input(readline("minishell>"));
+	if (!input)
+		exit_code();
+	if (input && ft_strlen(input) > 1)
 	{
-		if (input[ft_strlen(input) - 1] == '|')
+		/*if (input[ft_strlen(input) - 1] == '|')
 		{
 			aux = fully_prompt(input, '|');
 			input = aux;
-		}
-		if (!check_input_end(input[ft_strlen(input) - 1]))
+		}*/
+		if (!check_input_end(input))
 		{
 			add_history(input);
 			free(input);
@@ -84,5 +110,6 @@ int	check_input(t_toolbox *tools)
 		free(input);
 		return (1);
 	}
+	free(input);
 	return (0);
 }

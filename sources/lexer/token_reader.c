@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/06 12:39:01 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/10 15:19:31 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_quoted(char *args, t_lexer **list, int cr, int *ct)
 		}
 		else if (args[ct[2] + ct[0]] == cqt)
 			ct[1] = 0;
-		if (ct[1] == 0 && is_white_space(args[ct[2] + ct[0]]))
+		if (ct[1] == 0)
 			break ;
 		ct[0]++;
 	}
@@ -91,5 +91,6 @@ void	read_words(char *args, t_lexer **list)
 int	token_reader(t_toolbox *tools)
 {
 	read_words(tools->args, &tools->lexer_list);
+	token_expander(tools);
 	return (0);
 }
