@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:21:02 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/08 16:41:58 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:41:38 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*find_path(char *cmd, char **path)
 {
 	char	*tmp;
 	char	*aux;
+	char	*err;
 
 	if (!access(cmd, X_OK))
 		return (cmd);
@@ -50,7 +51,8 @@ char	*find_path(char *cmd, char **path)
 			free(tmp);
 			path++;
 		}
-		(perror(cmd), exit(1));
+		err = ft_strjoin(cmd, ": Command not found\n");
+		(ft_putstr_fd(err,2), free(err), exit(1));
 	}
 	return (NULL);
 }

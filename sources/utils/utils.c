@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/10 17:23:46 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/13 18:09:02 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ int	check_input(t_toolbox *tools)
 			aux = fully_prompt(input, '|');
 			input = aux;
 		}*/
-		if (!check_input_end(input))
+		if (!check_input_end(input) || !check_input_st(input))
 		{
 			add_history(input);
 			free(input);
-			printf("sintax parse error\n");
+			printf("sintax parse error near '|'\n");
 			return (1);
 		}
 		tools->args = ft_strtrim(input, " ");

@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/08 18:20:22 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:57:01 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ char	*check_str(char *str, char **env)
 	i = 0;
 	aux = check_str_two(str, env, i, qt);
 	free(qt);
-	free(str);
 	res = trimmed(aux, 0, 0);
 	return (res);
 }
 
-char	**check_args(char **args, char **env)
+/*char	**check_args(char **args, char **env)
 {
 	int		i;
 	char	**res;
@@ -109,4 +108,4 @@ void	expander(t_toolbox *tools)
 			check_redir(cmd->out_files, tools->env);
 		cmd = cmd->next;
 	}
-}
+}*/
