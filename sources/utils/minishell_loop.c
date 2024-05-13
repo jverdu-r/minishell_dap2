@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/13 18:26:08 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:23:39 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	tools_load(t_toolbox *tools)
 
 int	exit_code(void)
 {
-	printf("\nEXIT\n");
+	printf("\nexit\n");
 	rl_clear_history();
 	exit(0);
 }
@@ -46,7 +46,6 @@ void	routine(t_toolbox *tools)
 {
 	tools->cmd = parser(tools);
 	get_fds(tools->cmd);
-	//cmd_show(tools->cmd);
 	ft_executor(tools);
 }
 
