@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/13 18:09:18 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:40:01 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_bool	switch_bool(t_bool bool)
 	return (bool);
 }
 
-void	sort_arr(char **arr)
+char	**sort_arr(char **arr)
 {
 	int		i;
 	int		j;
@@ -54,14 +54,17 @@ void	sort_arr(char **arr)
 		{
 			if (ft_strcmp(arr[i], arr[j]) > 0)
 			{
+				printf("linea sin ordenar: %s\n", arr[i]);
 				aux = arr[j];
 				arr[j] = arr[i];
 				arr[i] = aux;
+				printf("linea ordenada: %s\n", arr[i]);
 			}
 			j++;
 		}
 		i++;
 	}
+	return(arr);
 }
 
 char	*get_home(void)

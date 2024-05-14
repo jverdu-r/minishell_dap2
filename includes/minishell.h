@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:07:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/10 16:56:40 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/14 18:36:22 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			pwd_search(t_toolbox *tools);
 char		**st_envp(char **envp);
 char		**new_env(void);
 char		*get_home(void);
-void		sort_arr(char **arr);
+char		**sort_arr(char **arr);
 //utility functions
 int		exit_code(void);
 

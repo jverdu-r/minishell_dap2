@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 19:49:07 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/03/20 20:14:57 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:41:18 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ int	ft_strcmp(const char *s1, const char *s2)
 		a++;
 	}
 	res = s1[a] - s2[a];
-	return ((unsigned char)res);
+	return (res);
 }

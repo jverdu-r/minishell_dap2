@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:50:15 by daparici          #+#    #+#             */
-/*   Updated: 2023/12/12 18:28:17 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:33:33 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_unset(t_toolbox *tools)
 						lenght_to_equal(tools->cmd->args[i])))
 					{
 						tmp = delete_variable(tools->env, j);
-						free(tools->env);
+						free_arr(tools->env);
 						tools->env = tmp;
 					}
 				}
@@ -76,21 +76,17 @@ char	**delete_variable(char **env, int i)
 	k = 0;
 	while (env[j])
 		j++;
-	env_copy = ft_calloc(sizeof(char *), j);
+	env_copy = ft_calloc(sizeof(char *), j + 1);
 	if (!env_copy)
 		return(NULL);
 	j = 0;
+
 	while (env[j])
 	{
 		if (j == i)
-		{
-			free(env[j]);
 			j++;
-		}
-		env_copy[k] = env[j];
-		j++;
-		k++;
+		else
+			env_copy[k++] = ft_strdup(env[j++]);
 	}
-	env_copy[k] = 0;
 	return(env_copy);
 }

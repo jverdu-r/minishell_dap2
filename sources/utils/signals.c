@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:52:14 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/13 19:22:56 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:32:45 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ static void	signal_father(int code)
 		printf("\n");
 	else
 		printf("Quit: 3\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
 }
 
 void	father_workout(void)

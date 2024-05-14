@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:33:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/08 17:59:00 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:36:09 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**st_envp(char **envp)
 		i++;
 	}
 	sorted[i] = 0;
-	sort_arr(sorted);
+	sorted = sort_arr(sorted);
 	return (sorted);
 }
 
