@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 18:38:22 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:11:19 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	exit_code(int ex)
 {
 	printf("\nexit\n");
 	rl_clear_history();
-	printf("ex: %d\n", ex);
 	exit(ex);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 18:47:27 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:19:08 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	ret_exit(void)
 {
 	if (g_exit_status > 32000)
 		g_exit_status = g_exit_status / 256;
+	if (g_exit_status == 2)
+		g_exit_status = 130;
+	if (g_exit_status == 256)
+		g_exit_status = 1;
 }
 
 void	simple_command(t_toolbox *tools, t_command *cmd)
@@ -47,7 +51,7 @@ void	simple_command(t_toolbox *tools, t_command *cmd)
 		if (cmd->heredoc && !cmd->args)
 		{
 			if (dup2(cmd->heredoc, 0) < 0)
-				(perror("minishell"), exit(1));
+				(perror("minishell"), exit(127));
 			close(cmd->heredoc);
 		}
 		manage_params_child(tools, cmd);

@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:44:34 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 18:37:16 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:11:13 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	m_exit(t_toolbox *tools, t_command *cmd)
 			{
 				code = ft_atoi(cmd->args[0]);
 				code = get_code(code);
-				printf("code: %d\n", code);
 				return (exit_clear(tools, code));
 			}
 			else
