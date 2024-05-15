@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:21:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/08 16:57:27 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:22:23 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
+extern int	g_exit_status;
 
 int	*switch_qt(int *qt, char c)
 {
@@ -85,7 +85,10 @@ char	*var_find(char *str, int i, char **env)
 		i++;
 	}
 	if (!ft_strncmp(res, "?", 1))
+	{
 		res = ft_itoa(g_exit_status);
+		free(aux);
+	}
 	else
 		res = expnd(aux, env);
 	return (res);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 23:45:25 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/08 18:37:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:27:20 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern sig_atomic_t	g_exit_status;
+extern int	g_exit_status;
 
 int	expander_hdoc_2(char *str, int i)
 {

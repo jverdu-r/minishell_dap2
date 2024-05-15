@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 09:45:18 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/13 17:51:21 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:05:14 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,15 @@ void	token_expander(t_toolbox *tools)
 			exp = check_str(list->str, tools->env);
 			if (ft_strlen(exp) > 0)
 				lexer_addback(&aux, lexer_new(exp, 0));
+			else
+				free(exp);
 		}
 		else
 			lexer_addback(&aux, lexer_new(NULL, list->token));
 		list = list->next;
 	}
 	lexer_free(tools->lexer_list);
-	if (aux->token == PIPE)
+	if (aux && aux->token == PIPE)
 		aux = aux->next;
 	tools->lexer_list = aux;
 }
