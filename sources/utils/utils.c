@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/14 16:28:31 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:44:30 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *get_input(char *str)
+char	*get_input(char *str)
 {
 	int		len;
 	int		i;
 	char	*res;
 
 	if (str == NULL)
-		return(NULL);
+		return (NULL);
 	len = ft_strlen(str);
 	res = ft_calloc(sizeof(char *), len);
 	i = 0;
@@ -32,6 +32,7 @@ char *get_input(char *str)
 	free(str);
 	return (res);
 }
+
 int	handle_quotes(char *input)
 {
 	int	qt;
@@ -82,7 +83,6 @@ int	check_input_end(char *c)
 		return (0);
 	return (1);
 }
-
 
 int	check_input(t_toolbox *tools)
 {

@@ -33,12 +33,11 @@ int check_void(char *str)
         return (1);
     else
     {
-	    while(is_space(str[i]))
-	        i++;
-	    if (str[i] == 0)
-	        return (1);
+        while (is_space(str[i]))
+            i++;
+	    if  (str[i] == 0)
+            return (1);
     }
-    printf ("str esiste\n");
     return (0);
 }
 

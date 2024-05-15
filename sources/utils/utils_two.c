@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/14 18:40:01 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:43:48 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	**sort_arr(char **arr)
 		}
 		i++;
 	}
-	return(arr);
+	return (arr);
 }
 
 char	*get_home(void)
@@ -90,9 +90,9 @@ char	*get_home(void)
 	return (home);
 }
 
-int check_input_st(char *str)
+int	check_input_st(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (is_white_space(str[i]))

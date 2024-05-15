@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:28:22 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/10 15:56:43 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/15 11:46:36 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	lexer_free(t_lexer *list)
 
 	if (list)
 	{
-		while(list->prev)
+		while (list->prev)
 			list = list->prev;
 		while (list)
 		{
