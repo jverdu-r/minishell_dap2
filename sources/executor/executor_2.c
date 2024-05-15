@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:23:21 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/15 11:26:28 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:37:06 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_executor_loop(t_command *cmd, t_toolbox *tools)
 {
 	int			ac_pipe[2];
 	t_command	*cmd_aux;
-	//int			status;
 
 	cmd_aux = cmd;
 	pipe(ac_pipe);

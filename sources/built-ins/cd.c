@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davidaparicio <davidaparicio@student.42    +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:39:42 by davidaparic       #+#    #+#             */
-/*   Updated: 2023/12/08 04:29:32 by davidaparic      ###   ########.fr       */
+/*   Updated: 2024/05/15 17:46:09 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	render_env(t_toolbox *tools)
 	free(current_dir);
 }
 
-int		ft_cd(t_toolbox *tools)
+int	ft_cd(t_toolbox *tools)
 {
 	char	*dir;
 	int		dir_status;

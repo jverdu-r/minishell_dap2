@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 23:45:25 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 11:27:20 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:39:05 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ char	*expander_hdoc(char *str, char **env)
 			copy_ex_str = expand_str;
 			aux = ft_substr(str, i, 1);
 			expand_str = ft_strjoin(copy_ex_str, aux);
-			free(copy_ex_str);
-			free(aux);
-			i++;
+			(free(copy_ex_str), free(aux), i++);
 		}
 	}
 	return (expand_str);

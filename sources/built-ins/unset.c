@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:50:15 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 11:17:20 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:43:48 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,23 @@ int	ft_check_equal(char *arg)
 	return (0);
 }
 
+void	del_var(t_toolbox *tools, int i, int j)
+{
+	char	**tmp;
+
+	if (!ft_strncmp(tools->env[j], tools->cmd->args[i], \
+			lenght_to_equal(tools->cmd->args[i])))
+	{
+		tmp = delete_variable(tools->env, j);
+		free_arr(tools->env);
+		tools->env = tmp;
+	}
+}
+
 int	ft_unset(t_toolbox *tools)
 {
 	int	i;
 	int	j;
-	char	**tmp;
 
 	i = 0;
 	if (tools->cmd->args)
@@ -45,15 +57,7 @@ int	ft_unset(t_toolbox *tools)
 			{
 				if (!check_parametres(tools->cmd->args[i]) && \
 					!ft_check_equal(tools->cmd->args[i]))
-				{
-					if (!ft_strncmp(tools->env[j], tools->cmd->args[i], \
-						lenght_to_equal(tools->cmd->args[i])))
-					{
-						tmp = delete_variable(tools->env, j);
-						free_arr(tools->env);
-						tools->env = tmp;
-					}
-				}
+					del_var(tools, i, j);
 				else
 					break ;
 				j++;
@@ -67,8 +71,8 @@ int	ft_unset(t_toolbox *tools)
 char	**delete_variable(char **env, int i)
 {
 	char	**env_copy;
-	int	j;
-	int	k;
+	int		j;
+	int		k;
 
 	j = 0;
 	k = 0;
@@ -76,9 +80,8 @@ char	**delete_variable(char **env, int i)
 		j++;
 	env_copy = ft_calloc(sizeof(char *), j + 1);
 	if (!env_copy)
-		return(NULL);
+		return (NULL);
 	j = 0;
-
 	while (env[j])
 	{
 		if (j == i)
@@ -86,5 +89,5 @@ char	**delete_variable(char **env, int i)
 		else
 			env_copy[k++] = ft_strdup(env[j++]);
 	}
-	return(env_copy);
+	return (env_copy);
 }

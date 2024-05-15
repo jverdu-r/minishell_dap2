@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:51:30 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/15 11:17:01 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/15 17:44:09 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**add_variable(char **sort_env, char *cmd_arg)
 	return (copy_env);
 }
 
-int		ft_export(t_toolbox *tools)
+int	ft_export(t_toolbox *tools)
 {
 	int		i;
 	char	**tmp;
