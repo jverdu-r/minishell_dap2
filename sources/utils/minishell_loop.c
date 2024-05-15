@@ -6,11 +6,13 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 19:11:19 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:44:58 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+extern int	g_exit_status;
 
 void	tools_reload(t_toolbox *tools)
 {
@@ -50,8 +52,7 @@ int	minishell_loop(t_toolbox *tools)
 {
 	while (1)
 	{
-		signals_workout();
-		check_input(tools);
+		(signals_workout(), check_input(tools));
 		if (tools->args && ft_strcmp(tools->args, "") == 0)
 			free(tools->args);
 		else if (tools->args)
@@ -65,6 +66,8 @@ int	minishell_loop(t_toolbox *tools)
 					if (!check_syntax(tools->lexer_list))
 						routine(tools);
 				}
+				else
+					g_exit_status = 0;
 			}
 			tools_reload(tools);
 		}

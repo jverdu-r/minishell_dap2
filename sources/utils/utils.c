@@ -6,11 +6,13 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 18:17:28 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:38:30 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+extern int	g_exit_status;
 
 char	*get_input(char *str)
 {
@@ -80,7 +82,10 @@ int	check_input_end(char *c)
 
 	len = ft_strlen(c) - 1;
 	if (c[len] == '<' || c[len] == '>' || c[len] == '|')
+	{
+		printf("sintax parse error near '%c'\n", c[len]);
 		return (0);
+	}
 	return (1);
 }
 
@@ -97,7 +102,7 @@ int	check_input(t_toolbox *tools)
 		{
 			add_history(input);
 			free(input);
-			printf("sintax parse error near '|'\n");
+			g_exit_status = 2;
 			return (1);
 		}
 		tools->args = ft_strtrim(input, " ");

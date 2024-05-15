@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 19:19:08 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:43:08 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_executor(t_toolbox *tools)
 	else
 	{
 		if (ft_is_builtin(tools->cmd) == 0)
+		{
 			ft_is_builtin_2(tools, tools->cmd);
+			g_exit_status = 0;
+		}
 		else if (ft_is_builtin(tools->cmd) != 0 && tools->cmd->cmd)
 			simple_command(tools, tools->cmd);
 	}
