@@ -6,11 +6,13 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/13 18:42:07 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:47:27 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+extern int	g_exit_status;
 
 void	ft_executor(t_toolbox *tools)
 {
@@ -27,10 +29,14 @@ void	ft_executor(t_toolbox *tools)
 	}
 }
 
+void	ret_exit(void)
+{
+	if (g_exit_status > 32000)
+		g_exit_status = g_exit_status / 256;
+}
+
 void	simple_command(t_toolbox *tools, t_command *cmd)
 {
-	int	status;
-
 	cmd->pid = fork();
 	if (cmd->pid < 0)
 		(perror("minishell:"), exit(1));
@@ -49,8 +55,9 @@ void	simple_command(t_toolbox *tools, t_command *cmd)
 	else
 	{
 		father_workout();
-		if (waitpid(cmd->pid, &status, 0) == -1)
+		if (waitpid(cmd->pid, &g_exit_status, 0) == -1)
 			(perror("minishell:"), exit(1));
+		ret_exit();
 	}
 }
 

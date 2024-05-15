@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 10:20:29 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/15 18:38:22 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ int	tools_load(t_toolbox *tools)
 	return (1);
 }
 
-int	exit_code(void)
+int	exit_code(int ex)
 {
 	printf("\nexit\n");
 	rl_clear_history();
-	exit(0);
+	printf("ex: %d\n", ex);
+	exit(ex);
 }
 
 void	routine(t_toolbox *tools)

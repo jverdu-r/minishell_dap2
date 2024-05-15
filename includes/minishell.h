@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:07:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 17:17:31 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:16:39 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,13 @@ char		*get_home(void);
 char		**sort_arr(char **arr);
 
 //utility functions
-int			exit_code(void);
+int			exit_code(int ex);
 
 //char		*expander(t_toolbox *tools, char *str);
 void		free_arr(char **arr);
 int			handle_quotes(char *input);
 int			check_input(t_toolbox *tools);
 int			check_quotes(char *str);
-int			exit_code(void);
 t_bool		switch_bool(t_bool bool);
 
 //error functions

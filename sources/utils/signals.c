@@ -6,15 +6,18 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:52:14 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/14 16:32:45 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:10:08 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+extern int	g_exit_status;
+
 static void	signal_int(int code)
 {
 	(void)code;
+	g_exit_status = 130;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -27,7 +30,10 @@ static void	signal_father(int code)
 	if (code == SIGINT)
 		printf("\n");
 	else
+	{
+		g_exit_status = 131;
 		printf("Quit: 3\n");
+	}
 }
 
 void	father_workout(void)
