@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_two.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 11:43:48 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/16 17:52:16 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ char	**sort_arr(char **arr)
 		{
 			if (ft_strcmp(arr[i], arr[j]) > 0)
 			{
-				printf("linea sin ordenar: %s\n", arr[i]);
 				aux = arr[j];
 				arr[j] = arr[i];
 				arr[i] = aux;
-				printf("linea ordenada: %s\n", arr[i]);
 			}
 			j++;
 		}

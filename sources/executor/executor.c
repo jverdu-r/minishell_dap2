@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 19:43:08 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:57:52 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_executor(t_toolbox *tools)
 
 void	ret_exit(void)
 {
-	if (g_exit_status > 32000)
+	if (g_exit_status > 10000)
 		g_exit_status = g_exit_status / 256;
 	if (g_exit_status == 2)
 		g_exit_status = 130;

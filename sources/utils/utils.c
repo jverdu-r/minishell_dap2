@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 19:38:30 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:35:13 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_input(t_toolbox *tools)
 	input = get_input(readline("minishell>"));
 	if (!input)
 		exit_code(2);
-	if (input && ft_strlen(input) > 1)
+	if (input && ft_strlen(input) >= 1)
 	{
 		if (!check_input_end(input) || !check_input_st(input))
 		{

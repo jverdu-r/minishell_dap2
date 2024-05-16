@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:48:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 11:45:52 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/16 18:56:26 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	comm_addback(t_command **head, t_command *new)
 	}
 }
 
-/*void	cmd_show(t_command *cmd)
+void	cmd_show(t_command *cmd)
 {
 	t_command	*aux;
 	t_redir		*in_aux;
@@ -105,7 +105,7 @@ void	comm_addback(t_command **head, t_command *new)
 		printf("have to append: %d\n", aux->app);
 		aux = aux->next;
 	}
-}*/
+}
 
 void	scmd_free(t_command *cmd)
 {

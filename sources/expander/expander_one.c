@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 17:23:59 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:24:40 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 			res = charjoin(aux, str[i]);
 		if ((qt[0] == 0 && qt[1] == 0) || (qt[0] == 1 && qt[1] == 0))
 		{
-			if (str[i] == '$')
+			if (str[i] == '$' && str[i + 1])
 			{
 				res = var_exp(str, aux, i, env);
 				i = ovarpass(str, i);

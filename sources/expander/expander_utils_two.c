@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/08 17:12:25 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:54:41 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ovarpass(char *str, int i)
 {
-	while (!is_space(str[i]) && str[i] != '\"' \
+	while (!is_white_space(str[i]) && str[i] != '\"' \
 		&& str[i] != '\'' && str[i])
 		i++;
-	if (str[i] == '\"' || str[i] == '\'' || is_space(str[i]))
+	if (str[i] == '\"' || str[i] == '\'' || is_white_space(str[i]))
 		i--;
 	if (!str[i])
 		i--;

@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 19:44:58 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:56:15 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	exit_code(int ex)
 void	routine(t_toolbox *tools)
 {
 	tools->cmd = parser(tools);
+	cmd_show(tools->cmd);
 	get_fds(tools->cmd);
 	ft_executor(tools);
 }
