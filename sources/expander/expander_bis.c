@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_bis.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:34:09 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 17:35:55 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/17 20:58:16 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@ char	*var_exp(char *str, char *aux, int i, char **env)
 	char	*exp;
 	char	*res;
 
-	exp = var_find(str, i, env);
-	res = ft_strjoin(aux, exp);
-	free(aux);
-	free(exp);
+	if (str[i + 1] == '\"' || is_white_space(str[i + 1]))
+		res = charjoin(aux, str[i]);
+	else
+	{
+		exp = var_find(str, i, env);
+		res = ft_strjoin(aux, exp);
+		free(aux);
+		free(exp);
+	}
 	return (res);
 }
 
@@ -73,7 +78,6 @@ char	**check_void_args(char **args)
 	{
 		if (check_void(args[i]) < 1)
 		{
-			printf("entra\n");
 			arr[len] = ft_strdup(args[i]);
 			len++;
 		}
