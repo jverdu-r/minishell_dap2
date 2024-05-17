@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:39:42 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/16 18:43:39 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/17 08:29:30 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ void	render_env(t_toolbox *tools)
 	free(current_dir);
 }
 
+void	print_err(char *str)
+{
+	ft_putstr_fd("minishell: cd: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(" not set\n", 2);
+}
+
 int	ft_cd(t_toolbox *tools)
 {
 	char	*dir;
@@ -81,9 +88,8 @@ int	ft_cd(t_toolbox *tools)
 		dir_status = chdir(tools->cmd->args[0]);
 		if (dir_status == -1)
 		{
-			ft_putstr_fd("minishell: cd: ", 2);
-			ft_putstr_fd(tools->cmd->args[0], 2);
-			ft_putstr_fd(" not set\n", 2);
+			print_err(tools->cmd->args[0]);
+			return (1);
 		}
 		else
 			render_env(tools);

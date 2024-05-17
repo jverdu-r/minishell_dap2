@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/16 20:03:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/17 08:30:03 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_white_space(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' ||
+	if (c == '\t' || c == '\n' || c == '\v' || \
 			c == '\f' || c == '\r' || c == ' ')
 		return (1);
 	return (0);
@@ -37,7 +37,7 @@ int	read_words(char *args, int i, t_lexer **list)
 				j++;
 		}
 		if (is_white_space(args[i + j]) || check_token(args, i + j))
-			break;
+			break ;
 		else
 			j++;
 	}
@@ -74,5 +74,3 @@ int	token_reader(t_toolbox *tools)
 	token_expander(tools);
 	return (0);
 }
-
-

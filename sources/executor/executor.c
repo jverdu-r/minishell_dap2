@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/16 17:57:52 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/17 08:24:49 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	ft_executor(t_toolbox *tools)
 	else
 	{
 		if (ft_is_builtin(tools->cmd) == 0)
-		{
 			ft_is_builtin_2(tools, tools->cmd);
-			g_exit_status = 0;
-		}
 		else if (ft_is_builtin(tools->cmd) != 0 && tools->cmd->cmd)
 			simple_command(tools, tools->cmd);
 	}
@@ -91,17 +88,17 @@ int	ft_is_builtin(t_command *cmd)
 void	ft_is_builtin_2(t_toolbox *tools, t_command *cmd)
 {
 	if (ft_strcmp(cmd->cmd, "pwd") == 0)
-		ft_pwd();
+		g_exit_status = ft_pwd();
 	else if (ft_strcmp(cmd->cmd, "echo") == 0)
-		ft_echo(cmd);
+		g_exit_status = ft_echo(cmd);
 	else if (ft_strcmp(cmd->cmd, "env") == 0)
-		ft_env(tools->env);
+		g_exit_status = ft_env(tools->env);
 	else if (ft_strcmp(cmd->cmd, "export") == 0)
-		ft_export(tools);
+		g_exit_status = ft_export(tools);
 	else if (ft_strcmp(cmd->cmd, "unset") == 0)
-		ft_unset(tools);
+		g_exit_status = ft_unset(tools);
 	else if (ft_strcmp(cmd->cmd, "cd") == 0)
-		ft_cd(tools);
+		g_exit_status = ft_cd(tools);
 	else if (ft_strcmp(cmd->cmd, "exit") == 0)
-		m_exit(tools, cmd);
+		g_exit_status = m_exit(tools, cmd);
 }
