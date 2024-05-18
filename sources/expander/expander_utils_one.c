@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:21:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 18:39:37 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:19:10 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ char	*var_find(char *str, int i, char **env)
 	if (!ft_strncmp(res, "?", 1))
 	{
 		res = ft_itoa(g_exit_status);
+		i = 0;
+		while (aux[i++])
+			res = charjoin(res, aux[i]);
 		free(aux);
 	}
 	else

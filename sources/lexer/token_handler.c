@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 19:40:51 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/13 17:03:50 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:45:26 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	token_handler(t_toolbox *tools, int i)
 	}
 	if (tk == PIPE || tk == LESS || tk == GREAT)
 	{
-		lexer_addback(&tools->lexer_list, lexer_new("", tk));
+		lexer_addback(&tools->lexer_list, lexer_new(NULL, tk));
 		return (1);
 	}
 	return (0);

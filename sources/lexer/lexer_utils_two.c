@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:28:22 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 11:46:36 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/18 13:43:00 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	lexer_free(t_lexer *list)
 
 	if (list)
 	{
-		while (list->prev)
+		while (list->prev != NULL)
 			list = list->prev;
 		while (list)
 		{
-			if (list->str)
+			if (list->token == 0 || list->str)
 				free(list->str);
 			aux = list;
 			if (list->next)

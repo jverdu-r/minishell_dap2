@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:51:30 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/15 17:44:09 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/18 00:42:18 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,21 @@ char	**add_variable(char **sort_env, char *cmd_arg)
 	return (copy_env);
 }
 
+void	ft_export_2(t_toolbox *tools, int i)
+{
+	char	**tmp;
+
+	if (tools->cmd->args[i])
+	{
+		tmp = add_variable(tools->env, tools->cmd->args[i]);
+		free(tools->env);
+		tools->env = tmp;
+	}
+}
+
 int	ft_export(t_toolbox *tools)
 {
 	int		i;
-	char	**tmp;
 
 	i = 0;
 	if (tools->cmd->args == NULL)
@@ -77,14 +88,9 @@ int	ft_export(t_toolbox *tools)
 		{
 			if (!check_parametres(tools->cmd->args[i])
 				&& !check_variable_exist(tools, tools->cmd->args[i]))
-			{
-				if (tools->cmd->args[i])
-				{
-					tmp = add_variable(tools->env, tools->cmd->args[i]);
-					free(tools->env);
-					tools->env = tmp;
-				}
-			}
+				ft_export_2(tools, i);
+			else
+				return (EXIT_FAILURE);
 			i++;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:39:42 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/17 08:29:30 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/18 01:25:47 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ void	render_env(t_toolbox *tools)
 	free(current_dir);
 }
 
-void	print_err(char *str)
+void	print_err(char *str, int c)
 {
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(str, 2);
-	ft_putstr_fd(" not set\n", 2);
+	if (c == 1)
+		ft_putstr_fd(" not set\n", 2);
 }
 
 int	ft_cd(t_toolbox *tools)
@@ -83,16 +84,21 @@ int	ft_cd(t_toolbox *tools)
 		else
 			render_env(tools);
 	}
-	else
+	else if (!tools->cmd->args[1])
 	{
 		dir_status = chdir(tools->cmd->args[0]);
 		if (dir_status == -1)
 		{
-			print_err(tools->cmd->args[0]);
+			print_err(tools->cmd->args[0], 1);
 			return (1);
 		}
 		else
 			render_env(tools);
+	}
+	else
+	{
+		print_err("too many arguments\n", 0);
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

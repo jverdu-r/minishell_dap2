@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:52:40 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 11:16:56 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/18 00:58:30 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ int	check_parametres(char *cmd_arg)
 	int	i;
 
 	i = 0;
+	if (cmd_arg[i] == '=')
+	{
+		export_error(cmd_arg);
+		return (1);
+	}
 	while (cmd_arg[i] != '=' && cmd_arg[i])
 	{
 		if (ft_isdigit(cmd_arg[0]) || !cmd_arg[0])
