@@ -44,8 +44,8 @@ int	exit_code(int ex)
 void	routine(t_toolbox *tools)
 {
 	tools->cmd = parser(tools);
-	get_fds(tools->cmd);
-	ft_executor(tools);
+	if (get_fds(tools->cmd) == 0)
+		ft_executor(tools);
 }
 
 int	minishell_loop(t_toolbox *tools)

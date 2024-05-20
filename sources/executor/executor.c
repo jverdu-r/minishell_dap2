@@ -31,7 +31,7 @@ void	ft_executor(t_toolbox *tools)
 
 void	ret_exit(void)
 {
-	if (g_exit_status > 10000)
+	if (g_exit_status > 255)
 		g_exit_status = g_exit_status / 256;
 	if (g_exit_status == 2)
 		g_exit_status = 130;

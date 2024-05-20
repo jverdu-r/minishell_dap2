@@ -12,6 +12,31 @@
 
 #include "../../includes/minishell.h"
 
+extern int	g_exit_status;
+
+void	redis_error(char *str, char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putendl_fd(msg, 2);
+	g_exit_status = 1;
+}
+
+int	check_in_fd_2(t_redir *in_files)
+{
+	if (access(in_files->file, R_OK) == -1)
+	{
+		if (errno == EACCES)
+			redis_error(in_files->file, ": Permission denied");
+		else if (errno == ENOENT)
+			redis_error(in_files->file, ": No such file or directory");
+		else
+			redis_error(in_files->file, ": Access error");
+		return (-1);
+	}
+	return (0);
+}
+
 int	check_in_fd(t_redir *redir)
 {
 	t_redir	*in_files;
@@ -19,15 +44,8 @@ int	check_in_fd(t_redir *redir)
 	in_files = redir;
 	while (in_files)
 	{
-		if (access(in_files->file, R_OK) == -1)
-		{
-			if (errno == EACCES)
-				error_msg("Access denied\n");
-			else if (errno == ENOENT)
-				error_msg("File does not exist\n");
-			else
-				error_msg("Access error\n");
-		}
+		if (check_in_fd_2(in_files) < 0)
+			return (-1);
 		if (in_files->next)
 			in_files = in_files->next;
 		else
@@ -62,7 +80,7 @@ void	check_out_fd(t_command *cmd)
 	}
 }
 
-void	get_fds(t_command *raw_cmd)
+int	get_fds(t_command *raw_cmd)
 {
 	t_command	*cmd;
 
@@ -71,6 +89,8 @@ void	get_fds(t_command *raw_cmd)
 	{
 		if (cmd->in_files)
 			cmd->in_fd = check_in_fd(cmd->in_files);
+		if (cmd->in_fd == -1 && !cmd->next)
+			return (1);
 		if (cmd->out_files)
 			check_out_fd(cmd);
 		if (cmd->next)
@@ -78,4 +98,5 @@ void	get_fds(t_command *raw_cmd)
 		else
 			break ;
 	}
+	return (0);
 }

@@ -34,6 +34,7 @@ void	ft_executor_loop(t_command *cmd, t_toolbox *tools)
 		else
 			break ;
 	}
+	ret_exit();
 }
 
 void	recursive_ex(int *pre_pipe, t_command *cmd, t_toolbox *tools)
@@ -101,18 +102,18 @@ void	manage_params_child(t_toolbox *tools, t_command *cmd)
 
 	cmd_arg = fill_args(cmd);
 	if (!cmd_arg)
-		(perror("minishell:"), exit(1));
+		(executor_error(cmd, "error in arguments"), exit(1));
 	path_rute = find_paths(tools->env);
 	if (!path_rute)
-		(perror("minishell:"), exit(1));
+		(executor_error(cmd, ": no such file or directory"), exit(127));
 	path_rutes = ft_split((char const *)path_rute, ':');
 	if (!path_rutes)
-		(perror("minishell:"), exit(1));
+		(executor_error(cmd, "path rutes error"), exit(1));
 	cmd_rute = find_path(cmd->cmd, path_rutes);
 	if (!cmd_rute)
-		(perror("minishell:"), exit(1));
+		(executor_error(cmd, "no such rute command"), exit(1));
 	if (execve(cmd_rute, cmd_arg, tools->env) < 0)
-		(perror("minishell:"), exit(1));
+		(executor_error(cmd, "execve error"), exit(1));
 }
 
 void	heredoc_child(int *pre_p, int *ac_p, t_command *cmd)

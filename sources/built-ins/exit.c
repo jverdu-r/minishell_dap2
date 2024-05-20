@@ -51,10 +51,10 @@ int	check_num(char *str)
 
 int	get_code(int code)
 {
-	if (code < 0)
-		code = (code * -1) + 2;
 	if (code > 255)
 		code = code % 256;
+	else if (code < 0)
+		code = (code + 256) % 256;
 	return (code);
 }
 

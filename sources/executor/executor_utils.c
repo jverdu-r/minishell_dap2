@@ -12,6 +12,14 @@
 
 #include "../../includes/minishell.h"
 
+
+void	executor_error(t_command *cmd, char *str)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd->cmd, STDERR_FILENO);
+	ft_putendl_fd(str, STDERR_FILENO);
+}
+
 int	ft_lstsize_m(t_command *list)
 {
 	int			len;

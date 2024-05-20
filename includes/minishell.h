@@ -88,4 +88,5 @@ void		manage_dups(t_command *cmd, int *pre_pipe, int *ac_pipe);
 void		simple_command(t_toolbox *tools, t_command *cmd);
 int			ft_lstsize_m(t_command *list);
 char		**fill_args(t_command *cmd);
+void		ret_exit(void);
 #endif

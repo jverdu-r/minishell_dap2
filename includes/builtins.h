@@ -55,6 +55,7 @@ int		lenght_to_equal(char *cmd_arg);
 int		check_variable_exist(t_toolbox *tools, char *cmd_arg);
 int		check_parametres(char *cmd_arg);
 char	**delete_variable(char **env, int i);
+void	executor_error(t_command *cmd, char *str);
 
 // unset
 int		ft_unset(t_toolbox *tools);
@@ -66,6 +67,7 @@ int		ft_cd(t_toolbox *tools);
 void	render_env(t_toolbox *tools);
 char	*get_env_dir(t_toolbox *tools, char *arg);
 char	*get_absolute_dir(t_toolbox *tools);
+void	print_err(char *str, int c);
 
 //exit
 int		m_exit(t_toolbox *tools, t_command *cmd);
