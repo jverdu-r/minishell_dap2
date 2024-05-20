@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/16 18:35:13 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:54:16 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int	handle_quotes(char *input)
 {
 	int	qt;
 	int	i;
+	int	len;
 
 	qt = -1;
 	i = 0;
-	while (input[i])
+	len = ft_strlen(input);
+	while (i < len)
 	{
 		if (input[i] == '\'' || input[i] == '\"')
 		{

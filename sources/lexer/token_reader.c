@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/17 08:30:03 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/20 19:15:49 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ int	token_reader(t_toolbox *tools)
 		if (check_token(tools->args, i))
 		{
 			tk = token_handler(tools, i);
-			if (tk == LESS_LESS || tk == GREAT_GREAT)
-				j += 2;
-			else
-				j++;
+			j += tk;
 		}
 		else
 			j += read_words(tools->args, i, &tools->lexer_list);

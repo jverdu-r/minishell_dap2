@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/17 08:30:33 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/20 19:15:59 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ int	minishell_loop(t_toolbox *tools)
 				if (tools->lexer_list)
 				{
 					if (!check_syntax(tools->lexer_list))
+					{
 						routine(tools);
+					}
 				}
 				else
 					g_exit_status = 0;
