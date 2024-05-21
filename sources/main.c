@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 10:28:15 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/20 17:50:40 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:21:17 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 1 || argv[1])
 	{
-		printf("Minishell must be executed wihtout arguments");
+		ft_putstr_fd("Minishell must be executed wihtout arguments\n", 2);
 		exit(0);
 	}
 	tools = ft_calloc(sizeof(t_toolbox), 1);

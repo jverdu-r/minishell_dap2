@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/20 18:54:16 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:32:54 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,18 @@ void	free_arr(char **arr)
 
 int	check_input_end(char *c)
 {
-	int	len;
+	int		len;
 
 	len = ft_strlen(c) - 1;
 	if (c[len] == '<' || c[len] == '>' || c[len] == '|')
 	{
-		printf("sintax parse error near '%c'\n", c[len]);
+		if (is_white_space(c[len - 1]))
+			print_err_token(c, len);
+		else
+		{
+			ft_putstr_fd("minishell: sintax error near", 2);
+			ft_putstr_fd(" unexpected token `newline'\n", 2);
+		}
 		return (0);
 	}
 	return (1);

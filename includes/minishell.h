@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:07:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 18:16:39 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/21 16:31:33 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_bool		switch_bool(t_bool bool);
 //error functions
 int			error_msg(char *msg);
 int			error_token(t_token token);
+void		print_err_token(char *c, int len);
 
 //executor funcion
 void		ft_executor_loop(t_command *cmd, t_toolbox *tools);

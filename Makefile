@@ -6,7 +6,7 @@
 #    By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 15:20:41 by jverdu-r          #+#    #+#              #
-#    Updated: 2024/05/15 17:35:20 by jverdu-r         ###   ########.fr        #
+#    Updated: 2024/05/21 16:31:09 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS	=	sources/main.c \
 			sources/utils/minishell_loop.c \
 			sources/utils/utils.c \
 			sources/utils/utils_two.c \
+			sources/utils/utils_three.c \
 			sources/utils/parse_envp.c \
 			sources/lexer/lexer_utils_one.c \
 			sources/lexer/lexer_utils_two.c \
