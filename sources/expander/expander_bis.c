@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:34:09 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/17 20:58:16 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/22 09:25:03 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_void(char *str)
 		return (1);
 	else
 	{
-		while (is_space(str[i]))
+		while (is_white_space(str[i]))
 			i++;
 		if (str[i] == 0)
 			return (1);

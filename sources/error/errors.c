@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:32:32 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/21 16:35:07 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 08:56:48 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	error_msg(char *msg)
 
 int	error_token(t_token token)
 {
-	ft_putstr_fd("minishell: sintax error near unexpected token `newline'\n", 2);
+	ft_putstr_fd("minishell: sintax error near", 2);
+	ft_putstr_fd(" unexpected token `newline'\n", 2);
 	if (token == PIPE)
 		printf("'|'%i\n", STDERR_FILENO);
 	if (token == LESS)

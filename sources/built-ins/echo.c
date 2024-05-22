@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:17:51 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/16 19:58:38 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 08:54:59 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_arguments(char **arg, int i, int out_fd)
 	}
 }
 
-int	ft_echo(t_command *cmd)
+void	print_args(t_command *cmd)
 {
 	int		flag;
 	size_t	i;
@@ -48,5 +48,13 @@ int	ft_echo(t_command *cmd)
 		if (flag == 0)
 			ft_putchar_fd('\n', cmd->out_fd);
 	}
+}
+
+int	ft_echo(t_command *cmd)
+{
+	if (cmd->args)
+		print_args(cmd);
+	else
+		ft_putchar_fd('\n', cmd->out_fd);
 	return (EXIT_SUCCESS);
 }

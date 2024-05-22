@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:59:56 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/09 17:27:12 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/22 09:03:15 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 void	expander(t_toolbox *tools);
 char	*charjoin(char *str, char c);
 char	*var_find(char *str, int i, char **env);
-int		is_space(char c);
 char	*trimmed(char *str, int i, int j);
 int		*switch_qt(int *qt, char c);
 int		ovarpass(char *str, int i);
