@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:53:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/16 17:52:16 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:17:42 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ int	check_input_st(char *str)
 	while (is_white_space(str[i]))
 		i++;
 	if (str[i] == '|')
+	{
+		ft_putstr_fd("minishell: sintax error near", 2);
+		ft_putstr_fd(" unexpected token `|'\n", 2);
 		return (0);
+	}
 	else
 		return (1);
 }

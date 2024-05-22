@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/21 16:32:54 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:28:47 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	check_input(t_toolbox *tools)
 		exit_code(2);
 	if (input && ft_strlen(input) >= 1)
 	{
-		if (!check_input_end(input) || !check_input_st(input))
+		if (!check_input_st(input) || !check_input_end(input))
 		{
 			add_history(input);
 			free(input);

@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 17:55:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:42:23 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*get_exp_value(char *str)
 
 int	ft_exp_stop(char c)
 {
-	if (c == '_' || ft_isalpha(c) || ft_isdigit(c))
+	if (c == '_' || c == '?' || \
+		ft_isalpha(c) || ft_isdigit(c))
 		return (0);
 	else
 		return (1);
