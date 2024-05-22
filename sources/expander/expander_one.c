@@ -6,11 +6,23 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 16:19:42 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:37:35 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+char	*get_exp_value(char *str)
+{
+	int		i;
+	char	*value;
+
+	i = 0;
+	while (str && str[i] != '=')
+		i++;
+	value = ft_substr(str, i + 1, ft_strlen(str) - 1);
+	return (value);
+}
 
 int	ft_exp_stop(char c)
 {

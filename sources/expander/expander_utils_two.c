@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 16:20:41 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:41:19 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ char	*expnd(char *str, char **env)
 {
 	int		i;
 	char	*aux;
-	char	**r_var;
 
 	aux = ft_strjoin(str, "=");
 	i = 0;
@@ -57,10 +56,8 @@ char	*expnd(char *str, char **env)
 	{
 		if (ft_strnstr(env[i], aux, ft_strlen(aux)))
 		{
-			r_var = ft_split(env[i], '=');
 			free(aux);
-			aux = ft_strdup(r_var[1]);
-			free_arr(r_var);
+			aux = get_exp_value(env[i]);
 			free(str);
 			return (aux);
 		}
