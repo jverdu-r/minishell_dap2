@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 16:37:35 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:55:02 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ char	*check_str(char *str, char **env)
 {
 	int		*qt;
 	int		i;
-	char	*res;
 	char	*aux;
 
 	qt = init_qt();
 	i = 0;
 	aux = check_str_two(str, env, i, qt);
 	free(qt);
-	res = trimmed(aux, 0, 0);
-	return (res);
+	return (aux);
 }

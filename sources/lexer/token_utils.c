@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 09:45:18 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/20 19:10:27 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:53:41 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	token_expander(t_toolbox *tools)
 		{
 			exp = check_str(list->str, tools->env);
 			if (ft_strlen(exp) > 0)
-				lexer_addback(&aux, lexer_new(exp, 0));
+				lexer_addback(&aux, lexer_new(trimmed(exp, 0, 0), 0));
 			else
 				free(exp);
 		}

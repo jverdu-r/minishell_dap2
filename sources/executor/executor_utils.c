@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:21:02 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/21 15:59:13 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:38:06 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,23 @@ char	**fill_args(t_command *cmd)
 
 char	*find_paths(char **envp)
 {
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strnstr(envp[i], "PATH", 4))
+			return (envp[i] + 5);
+		i++;
+	}
+	return (NULL);
+}
+/*char	*find_paths(char **envp)
+{
 	while (*envp && ft_strncmp("PATH", *envp, 4))
 		envp++;
 	if (*envp)
 		return (*envp + 5);
 	else
 		return (NULL);
-}
+}*/
