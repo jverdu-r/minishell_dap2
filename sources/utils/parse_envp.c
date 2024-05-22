@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:33:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/20 17:42:50 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:02:15 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,11 @@ char	**new_env(void)
 	char	*aux;
 
 	aux = getcwd(NULL, 0);
-	env = ft_calloc(sizeof(char *), 2);
+	env = ft_calloc(sizeof(char *), 4);
 	env[0] = ft_strjoin("PWD=", aux);
-	env[1] = 0;
+	env[1] = "SHLVL=1";
+	env[2] = "_=/usr/bin/env";
+	env[3] = 0;
 	free(aux);
 	return (env);
 }

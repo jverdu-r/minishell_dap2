@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   expander_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 10:34:00 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/22 16:19:42 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	ft_exp_stop(char c)
+{
+	if (c == '_' || ft_isalpha(c) || ft_isdigit(c))
+		return (0);
+	else
+		return (1);
+}
 
 char	*check_str_two(char *str, char **env, int i, int *qt)
 {
@@ -33,7 +41,9 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 				i = ovarpass(str, i);
 			}
 			else
+			{
 				res = charjoin(aux, str[i]);
+			}
 		}
 		i++;
 	}
