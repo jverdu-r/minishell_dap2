@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:21:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 10:00:08 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:30:19 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,12 @@ char	*trimmed(char *str, int i, int j)
 	free(str);
 	return (res);
 }
-/*int	exp_stop(char c)
-{
-	if (is_white_space(c))
-		return (1);
-	if (c < 30)
-}*/
 
 char	*var_find(char *str, int i, char **env)
 {
 	char	*aux;
 	char	*res;
 
-	i++;
 	aux = ft_calloc(sizeof(char), 1);
 	aux[0] = 0;
 	while (ft_isalpha(str[i]))
@@ -81,7 +74,7 @@ char	*var_find(char *str, int i, char **env)
 		aux = res;
 		i++;
 	}
-	if (!ft_strncmp(res, "?", 1))
+	if (res && !ft_strncmp(res, "?", 1))
 	{
 		res = ft_itoa(g_exit_status);
 		i = 0;

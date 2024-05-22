@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:34:09 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 09:25:03 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/22 10:31:57 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ char	*var_exp(char *str, char *aux, int i, char **env)
 		res = charjoin(aux, str[i]);
 	else
 	{
+		while (str[i])
+		{
+			if (str[i] == '$')
+				i++;
+			else
+				break ;
+		}
 		exp = var_find(str, i, env);
 		res = ft_strjoin(aux, exp);
 		free(aux);
