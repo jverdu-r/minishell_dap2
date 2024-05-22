@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 10:33:26 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/22 12:24:09 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ovarpass(char *str, int i)
 		i++;
 	while (str[i])
 	{
+		if (str[i] == '_')
+			i++;
 		if (!isalpha(str[i]))
 			break ;
 		i++;
