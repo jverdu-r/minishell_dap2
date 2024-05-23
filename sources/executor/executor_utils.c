@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:21:02 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/22 17:38:06 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:33:27 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,10 @@ char	*find_paths(char **envp)
 	while (envp[i])
 	{
 		if (ft_strnstr(envp[i], "PATH", 4))
+		{
+			printf("path encontrado: %s\n", envp[i]);
 			return (envp[i] + 5);
+		}
 		i++;
 	}
 	return (NULL);

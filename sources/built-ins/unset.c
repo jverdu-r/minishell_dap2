@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:50:15 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 17:43:48 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:58:39 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void	del_var(t_toolbox *tools, int i, int j)
 {
 	char	**tmp;
 
+	printf("env: %s ; args : %s\n", tools->env[j], tools->cmd->args[i]);
 	if (!ft_strncmp(tools->env[j], tools->cmd->args[i], \
 			lenght_to_equal(tools->cmd->args[i])))
 	{
+		printf("++++++++++++++++++++++++\n");
 		tmp = delete_variable(tools->env, j);
 		free_arr(tools->env);
 		tools->env = tmp;
@@ -44,8 +46,8 @@ void	del_var(t_toolbox *tools, int i, int j)
 
 int	ft_unset(t_toolbox *tools)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	if (tools->cmd->args)

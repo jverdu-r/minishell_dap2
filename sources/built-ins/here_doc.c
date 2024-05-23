@@ -6,11 +6,13 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:03:10 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/23 16:56:41 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/23 17:29:02 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+extern int	g_exit_status;
 
 void	resolve_heredocs(t_command *cmd, char **env)
 {
