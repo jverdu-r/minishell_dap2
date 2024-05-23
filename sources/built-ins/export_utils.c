@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:52:40 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/18 00:58:30 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:02:55 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	lenght_to_equal(char *cmd_arg)
 	i = 0;
 	while (cmd_arg[i] && cmd_arg[i] != '=')
 		i++;
+	i--;
 	return (i);
 }
 
