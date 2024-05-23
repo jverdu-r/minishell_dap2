@@ -33,11 +33,12 @@ void	print_args(t_command *cmd)
 	i = 0;
 	if (cmd->args != NULL)
 	{
-		while (cmd->args[i] && !ft_strncmp(cmd->args[i], "-n", 2))
+		while (cmd->args[i] && ft_strncmp(cmd->args[i], "-n", 2))
 		{
 			j = 1;
 			while (cmd->args[i][j] && cmd->args[i][j] == 'n')
 				j++;
+			j--;
 			if (j != ft_strlen(cmd->args[i]) && cmd->args[i][j] != 'n')
 				break ;
 			flag = 1;

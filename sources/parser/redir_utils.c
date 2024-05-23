@@ -22,6 +22,7 @@ t_redir	*redir_new(char *str)
 	new->file = ft_strdup(str);
 	new->next = NULL;
 	new->prev = NULL;
+	free(str);
 	return (new);
 }
 

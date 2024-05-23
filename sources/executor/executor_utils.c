@@ -97,10 +97,7 @@ char	*find_paths(char **envp)
 	while (envp[i])
 	{
 		if (ft_strnstr(envp[i], "PATH", 4))
-		{
-			printf("path encontrado: %s\n", envp[i]);
 			return (envp[i] + 5);
-		}
 		i++;
 	}
 	return (NULL);

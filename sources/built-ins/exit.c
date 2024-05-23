@@ -66,8 +66,9 @@ int	m_exit(t_toolbox *tools, t_command *cmd)
 	{
 		if (cmd->args[1])
 		{
+			ft_putstr_fd("exit\n", 2);
 			ft_putstr_fd("bash: exit: too many arguments\n", 2);
-			return (exit_clear(tools, 2));
+			return (1);
 		}
 		else
 		{

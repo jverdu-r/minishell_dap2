@@ -49,6 +49,7 @@ void	render_env(t_toolbox *tools)
 	if (current_dir != NULL)
 	{
 		free(tools->old_pwd);
+		printf("******************\n");
 		tools->old_pwd = ft_strdup(tools->pwd);
 		free(tools->pwd);
 		tools->pwd = getcwd(NULL, 0);

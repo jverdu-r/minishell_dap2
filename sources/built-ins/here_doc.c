@@ -78,10 +78,11 @@ void	child_control(int *pipe1, char **env, t_command *cmd, int i)
 		if (!ft_strncmp(str_trimed, cmd->limiter[i], ft_strlen(str_trimed)))
 			aux = expander_hdoc(line, env);
 		else
-			aux = line;
+			aux = ft_strdup(line);
 		write(2, "> ", 2);
 		ft_putstr_fd(aux, pipe1[1]);
 		free(line);
+		free(aux);
 		line = get_next_line(0);
 	}
 	(free(str_trimed), free(line), close(pipe1[1]), close(pipe1[0]));
