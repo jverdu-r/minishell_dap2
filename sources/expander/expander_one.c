@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 19:42:23 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:51:54 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ char	*check_str_two(char *str, char **env, int i, int *qt)
 				i = ovarpass(str, i);
 			}
 			else
-			{
 				res = charjoin(aux, str[i]);
-			}
 		}
 		i++;
 	}

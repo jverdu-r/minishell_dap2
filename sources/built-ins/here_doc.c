@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:03:10 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/22 17:55:12 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:56:41 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,19 @@ void	child_control(int *pipe1, char **env, t_command *cmd, int i)
 	char	*str_trimed;
 
 	(sig_heredoc(), write(2, "> ", 2));
-	str_trimed = trimmed(ft_strdup(cmd->limiter[i]), 0, 0);
+	str_trimed = trimmed(cmd->limiter[i], 0, 0);
 	line = get_next_line(0);
 	while (ft_strlen(str_trimed) != (ft_strlen(line) - 1)
 		|| ft_strncmp(line, str_trimed, ft_strlen(str_trimed) - 1))
 	{
 		if (line == NULL)
 			(printf("\n"), exit(0));
-		if (!ft_strcmp(str_trimed, cmd->limiter[i]))
-		{
-			aux = check_str(line, env);
-			//aux = expander_hdoc(line, env);
-		}
+		if (!ft_strncmp(str_trimed, cmd->limiter[i], ft_strlen(str_trimed)))
+			aux = expander_hdoc(line, env);
 		else
 			aux = line;
 		write(2, "> ", 2);
 		ft_putstr_fd(aux, pipe1[1]);
-		free(aux);
 		free(line);
 		line = get_next_line(0);
 	}
@@ -94,6 +90,7 @@ char	*find_variable(char *str, unsigned int i)
 {
 	unsigned int		j;
 	char				*aux;
+	char				*var;
 
 	j = i;
 	while (str[i] && ((str[i] >= 'a' && str[i] <= 'z')
@@ -101,19 +98,26 @@ char	*find_variable(char *str, unsigned int i)
 			|| (str[i] >= '0' && str[i] <= '9')))
 		i++;
 	aux = ft_substr(str, j, (i - j));
-	return (aux);
+	var = ft_strjoin(aux, "=");
+	free(aux);
+	return (var);
 }
 
 char	*check_env(char *str, char **env)
 {
-	int	i;
+	int		i;
+	int		len;
+	char	*exp_var;
 
 	i = 0;
+	len = ft_strlen(str);
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], str, lenght_to_equal(env[i])) == 0)
-			return (ft_substr(env[i], lenght_to_equal(env[i]) + 1,
-					ft_strlen(env[i]) - lenght_to_equal(env[i]) + 1));
+		if (ft_strnstr(env[i], str, len))
+		{
+			exp_var = ft_substr(env[i], len, ft_strlen(env[i]));
+			return (exp_var);
+		}
 		i++;
 	}
 	return (ft_strdup(""));

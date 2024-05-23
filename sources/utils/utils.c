@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:58:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 19:28:47 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/23 15:48:53 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_input_end(char *c)
 	len = ft_strlen(c) - 1;
 	if (c[len] == '<' || c[len] == '>' || c[len] == '|')
 	{
-		if (is_white_space(c[len - 1]))
+		if (len > 0 && is_white_space(c[len - 1]))
 			print_err_token(c, len);
 		else
 		{

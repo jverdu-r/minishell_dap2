@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/03/19 18:35:53 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:52:27 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ t_command	*cmd_list(t_lexer *list)
 t_lexer	*redir_add(t_command *cmd, t_lexer *list)
 {
 	if (list->token == LESS)
-		redir_addback(&cmd->in_files, redir_new(list->next->str));
+		redir_addback(&cmd->in_files, \
+			redir_new(trimmed(list->next->str, 0, 0)));
 	if (list->token == GREAT || list->token == GREAT_GREAT)
 	{
-		redir_addback(&cmd->out_files, redir_new(list->next->str));
+		redir_addback(&cmd->out_files, \
+			redir_new(trimmed(list->next->str, 0, 0)));
 		if (list->token == GREAT_GREAT)
 			cmd->app = 1;
 		else
@@ -57,7 +59,7 @@ void	get_arg(t_command *cmd, char *str)
 	cmd->args = malloc(sizeof(char *) * 2);
 	if (!cmd->args)
 		cmd->args = NULL;
-	cmd->args[0] = ft_strdup(str);
+	cmd->args[0] = trimmed(str, 0, 0);
 	cmd->args[1] = 0;
 }
 
@@ -73,7 +75,7 @@ void	get_new_arg(t_command *cmd, char *str)
 	i = 0;
 	while (cmd->args[i])
 	{
-		aux[i] = ft_strdup(cmd->args[i]);
+		aux[i] = trimmed(cmd->args[i], 0, 0);
 		i++;
 	}
 	aux[i] = ft_strdup(str);
