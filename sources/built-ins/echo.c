@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:17:51 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/22 08:54:59 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/24 13:18:34 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ void	print_args(t_command *cmd)
 	i = 0;
 	if (cmd->args != NULL)
 	{
-		while (cmd->args[i] && ft_strncmp(cmd->args[i], "-n", 2))
+		while (cmd->args[i] && !ft_strncmp(cmd->args[i], "-n", 2))
 		{
 			j = 1;
 			while (cmd->args[i][j] && cmd->args[i][j] == 'n')
 				j++;
-			j--;
 			if (j != ft_strlen(cmd->args[i]) && cmd->args[i][j] != 'n')
 				break ;
 			flag = 1;

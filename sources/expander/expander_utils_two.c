@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_two.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 16:41:19 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:43:33 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ovarpass(char *str, int i)
 {
-	int	j;
-
 	while (str[i] == '$')
 		i++;
 	while (str[i])
@@ -23,13 +21,6 @@ int	ovarpass(char *str, int i)
 		if (ft_exp_stop(str[i]))
 			break ;
 		i++;
-	}
-	j = i;
-	while (str[j])
-	{
-		if (ft_isdigit(str[j]))
-			return (ft_strlen(str) - 1);
-		j++;
 	}
 	i--;
 	return (i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:56:27 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/15 11:41:49 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/24 13:57:55 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*expander_hdoc_3(char *str, char **env, char *expand_str, int i);
 char	*check_env(char *str, char **env);
 void	resolve_heredocs(t_command *cmd, char **env);
 void	child_control(int *pipe1, char **env, t_command *cmd, int i);
+int		ft_strncmp_2(const char *s1, const char *s2, size_t n);
 
 //built-ins funcion
 //  echo
