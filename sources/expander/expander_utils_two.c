@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/24 18:43:33 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/24 19:14:13 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ char	*expnd(char *str, char **env)
 		i++;
 	}
 	free(aux);
-	aux = malloc(sizeof(char) * 1);
-	aux[0] = 0;
+	if (ft_strlen(str) == 0)
+		aux = ft_strjoin(str, "$");
+	else
+		aux = ft_calloc(sizeof(char), 1);
 	free(str);
 	return (aux);
 }
