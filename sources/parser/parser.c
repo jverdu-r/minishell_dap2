@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/23 16:52:27 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/25 16:47:39 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	get_new_arg(t_command *cmd, char *str)
 	i = 0;
 	while (cmd->args[i])
 	{
-		aux[i] = trimmed(cmd->args[i], 0, 0);
+		aux[i] = ft_strdup(cmd->args[i]);
 		i++;
 	}
-	aux[i] = ft_strdup(str);
+	aux[i] = trimmed(str, 0, 0);
 	aux[i + 1] = 0;
 	free_arr(cmd->args);
 	cmd->args = aux;
