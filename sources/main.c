@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 10:28:15 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/24 09:06:19 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/26 15:53:36 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	main(int argc, char **argv, char **envp)
 	}
 	tools = ft_calloc(sizeof(t_toolbox), 1);
 	tools_load(tools);
-	if (envp[0] == 0)
+	if (envp[0] == NULL)
 		tools->env = new_env();
 	else
 	{
 		tools->env = envp_dup(envp, tools);
 		shell_up(tools->env);
 	}
-	pwd_search(tools, envp);
+	pwd_search(tools, tools->env);
 	minishell_loop(tools);
 	free(tools);
 	return (0);
