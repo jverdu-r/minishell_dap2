@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/26 13:54:11 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:23:14 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char		*fully_prompt(char *input, char c);
 char		*get_input(char *str);
 t_redir		*redir_new(char *str);
 void		redir_addback(t_redir **head, t_redir *new);
-void		redir_show(t_redir *list, char *str);
 void		redir_free(t_redir *redir);
 void		cmd_free(t_command *cmd);
 void		scmd_free(t_command *cmd);

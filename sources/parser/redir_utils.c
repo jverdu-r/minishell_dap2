@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:43:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/03/19 18:36:01 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/26 16:22:50 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,6 @@ void	redir_addback(t_redir **head, t_redir *new)
 			aux = aux->next;
 		aux->next = new;
 		new->prev = aux;
-	}
-}
-
-void	redir_show(t_redir *list, char *str)
-{
-	while (list)
-	{
-		printf("%s: %s\n", str, list->file);
-		list = list->next;
 	}
 }
 
