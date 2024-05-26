@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:50:15 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/23 19:03:41 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/25 02:16:33 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,24 @@ void	del_var(t_toolbox *tools, int i, int j)
 	}
 }
 
+int	check_pmt_unset(char *cmd_arg)
+{
+	int	i;
+
+	i = 0;
+	if (cmd_arg[i] == '=')
+		return (1);
+	while (cmd_arg[i] != '=' && cmd_arg[i])
+	{
+		if (ft_isdigit(cmd_arg[0]) || !cmd_arg[0])
+			return (1);
+		if ((cmd_arg[i] != '_') && (ft_isalnum(cmd_arg[i]) == 0))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	ft_unset(t_toolbox *tools)
 {
 	int		i;
@@ -55,7 +73,7 @@ int	ft_unset(t_toolbox *tools)
 			j = 0;
 			while (tools->env[j])
 			{
-				if (!check_parametres(tools->cmd->args[i]) && \
+				if (!check_pmt_unset(tools->cmd->args[i]) && \
 					!ft_check_equal(tools->cmd->args[i]))
 					del_var(tools, i, j);
 				else

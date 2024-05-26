@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:48:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 17:18:11 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:54:00 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,65 +45,6 @@ void	comm_addback(t_command **head, t_command *new)
 			aux = aux->next;
 		aux->next = new;
 		new->prev = aux;
-	}
-}
-
-void	cmd_show(t_command *cmd)
-{
-	t_command	*aux;
-	t_redir		*in_aux;
-	t_redir		*out_aux;
-	int			i;
-
-	aux = cmd;
-	while (aux)
-	{
-		if (aux->cmd)
-			printf("command: %s\n", aux->cmd);
-		if (aux->append)
-			printf("append to: %s\n", aux->append);
-		if (aux->limiter)
-		{
-			i = 0;
-			while (cmd->limiter[i])
-			{
-				printf("heredoc[%d] with limiter: %s\n", i, aux->limiter[i]);
-				i++;
-			}
-		}
-		if (aux->args)
-		{
-			i = 0;
-			while (aux->args[i])
-			{
-				printf("argument[%d]: %s\n", i, aux->args[i]);
-				i++;
-			}
-		}
-		if (aux->out_fd)
-			printf("out fd: %d\n", aux->out_fd);
-		if (aux->in_fd)
-			printf("in fd: %d\n", aux->in_fd);
-		if (aux->out_files)
-		{
-			out_aux = aux->out_files;
-			while (out_aux)
-			{
-				printf("out_file: %s\n", out_aux->file);
-				out_aux = out_aux->next;
-			}
-		}
-		if (aux->in_files)
-		{
-			in_aux = aux->in_files;
-			while (in_aux)
-			{
-				printf("in_file: %s\n", in_aux->file);
-				in_aux = in_aux->next;
-			}
-		}
-		printf("have to append: %d\n", aux->app);
-		aux = aux->next;
 	}
 }
 

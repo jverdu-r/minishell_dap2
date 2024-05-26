@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:28:22 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/18 13:43:00 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:54:27 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,30 +52,6 @@ void	lexer_free(t_lexer *list)
 		}
 		free(list);
 	}
-}
-
-void	lexer_show(t_lexer *list)
-{
-	t_lexer	*tmp;
-
-	tmp = list;
-	printf("\n");
-	while (tmp)
-	{
-		printf("---node---\n\n");
-		if (tmp->str)
-		{
-			if (!ft_strcmp(tmp->str, " "))
-				printf("space\n");
-			else
-				printf("str: %p, %s\n", tmp->str, tmp->str);
-		}
-		if (tmp->token)
-			printf("token: %u, %d\n", tmp->token, tmp->token);
-		printf("\n---end node---\n");
-		tmp = tmp->next;
-	}
-	printf("\n");
 }
 
 int	*init_ct(int cr)

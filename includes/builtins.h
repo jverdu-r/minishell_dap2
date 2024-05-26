@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:56:27 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/24 13:57:55 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/25 02:17:24 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	executor_error(t_command *cmd, char *str);
 int		ft_unset(t_toolbox *tools);
 char	**delete_variable(char **env, int i);
 int		ft_check_equal(char *arg);
+int		check_pmt_unset(char *cmd_arg);
 
 // cd
 int		ft_cd(t_toolbox *tools);

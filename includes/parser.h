@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 11:41:12 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/26 13:54:11 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_redir		*redir_new(char *str);
 void		redir_addback(t_redir **head, t_redir *new);
 void		redir_show(t_redir *list, char *str);
 void		redir_free(t_redir *redir);
-void		cmd_show(t_command *cmd);
 void		cmd_free(t_command *cmd);
 void		scmd_free(t_command *cmd);
 int			get_fds(t_command *cmd);

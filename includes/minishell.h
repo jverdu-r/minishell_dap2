@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 15:07:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/24 09:08:47 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/26 13:53:38 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 //test
 t_command	*cmd_extract(t_lexer *list);
 int			check_syntax(t_lexer *tk_list);
-void		show_env(t_toolbox *tools);
 
 //signal functions
 void		sig_heredoc(void);

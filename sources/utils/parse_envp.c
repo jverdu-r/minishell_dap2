@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_envp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:33:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/24 09:14:14 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/26 13:53:28 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,6 @@ char	**st_envp(char **envp)
 	sorted[i] = 0;
 	sorted = sort_arr(sorted);
 	return (sorted);
-}
-
-void	show_env(t_toolbox *tools)
-{
-	int	i;
-
-	i = 0;
-	printf("\n---unsorted env---\n");
-	while (tools->env[i])
-	{
-		printf("%s\n", tools->env[i]);
-		i++;
-	}
-	i = 0;
-	//printf("\n---sorted env---\n");
-	/*while (tools->sort_env[i])
-	{
-		printf("%s\n", tools->sort_env[i]);
-		i++;
-	}*/
 }
 
 char	**envp_dup(char	**envp, t_toolbox *tools)

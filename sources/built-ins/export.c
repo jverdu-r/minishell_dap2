@@ -6,7 +6,7 @@
 /*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:51:30 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/18 00:42:18 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/25 01:53:52 by daparici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,25 @@ void	ft_export_2(t_toolbox *tools, int i)
 int	ft_export(t_toolbox *tools)
 {
 	int		i;
+	int		params;
+	int		status;
 
 	i = 0;
+	params = 0;
+	status = 0;
 	if (tools->cmd->args == NULL)
 		print_export(st_envp(tools->env));
 	else
 	{
 		while (tools->cmd->args[i])
 		{
-			if (!check_parametres(tools->cmd->args[i])
-				&& !check_variable_exist(tools, tools->cmd->args[i]))
+			params = check_parametres(tools->cmd->args[i]);
+			if (!params && !check_variable_exist(tools, tools->cmd->args[i]))
 				ft_export_2(tools, i);
-			else
-				return (EXIT_FAILURE);
+			else if (params)
+				status = 1;
 			i++;
 		}
 	}
-	return (EXIT_SUCCESS);
+	return (status);
 }
