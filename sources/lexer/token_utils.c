@@ -43,8 +43,6 @@ int	check_syntax(t_lexer *tk_list)
 				return (error_token(list->token));
 			else if (list->token == PIPE && list->next->token == PIPE)
 				return (error_token(list->token));
-			else if (list->token > 0 && !list->next->str)
-				return (error_token(list->token));
 		}
 		list = list->next;
 	}

@@ -102,12 +102,3 @@ char	*find_paths(char **envp)
 	}
 	return (NULL);
 }
-/*char	*find_paths(char **envp)
-{
-	while (*envp && ft_strncmp("PATH", *envp, 4))
-		envp++;
-	if (*envp)
-		return (*envp + 5);
-	else
-		return (NULL);
-}*/

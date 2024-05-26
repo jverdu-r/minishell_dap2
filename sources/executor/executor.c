@@ -16,8 +16,18 @@ extern int	g_exit_status;
 
 void	ft_executor(t_toolbox *tools)
 {
-	if (tools->cmd->heredoc)
-		resolve_heredocs(tools->cmd, tools->env);
+	t_command	*aux;
+
+	aux = tools->cmd;
+	while (aux)
+	{
+		if (aux->heredoc)
+		{
+			resolve_heredocs(tools->cmd, tools->env);
+			break ;
+		}
+		aux = aux->next;
+	}
 	if (ft_lstsize_m(tools->cmd) > 1)
 		ft_executor_loop(tools->cmd, tools);
 	else

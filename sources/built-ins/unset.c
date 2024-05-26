@@ -36,9 +36,13 @@ void	del_var(t_toolbox *tools, int i, int j)
 	if (!ft_strncmp(tools->env[j], tools->cmd->args[i], \
 			lenght_to_equal(tools->cmd->args[i])))
 	{
-		tmp = delete_variable(tools->env, j);
-		free_arr(tools->env);
-		tools->env = tmp;
+		if ((int)ft_strlen(tools->cmd->args[i]) \
+			== lenght_to_equal(tools->env[j]))
+		{
+			tmp = delete_variable(tools->env, j);
+			free_arr(tools->env);
+			tools->env = tmp;
+		}
 	}
 }
 

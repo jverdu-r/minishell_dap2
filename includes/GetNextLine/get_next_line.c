@@ -106,25 +106,3 @@ char	*get_next_line(int fd)
 	res = ft_getreserv(res);
 	return (line);
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-
-// 	fd = open("gnl.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("primera linea:%s", line);
-// 	line = get_next_line(fd);
-// 	printf("segunda linea:%s", line);
-// 	line = get_next_line(fd);
-// 	printf("tercera linea:%s", line);
-// 	close(fd);
-// 	fd = open("gnl.txt", O_RDONLY);
-// 	line = get_next_line(fd);
-// 	printf("cuarta linea:%s", line);
-// 	line = get_next_line(fd);
-// 	printf("quinta linea:%s\n", line);
-// 	close(fd);
-// 	return (0);
-// }

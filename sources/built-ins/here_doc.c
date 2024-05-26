@@ -22,9 +22,7 @@ void	resolve_heredocs(t_command *cmd, char **env)
 	while (aux)
 	{
 		if (aux->heredoc)
-		{
 			check_here_doc(aux, env);
-		}
 		if (aux->next)
 			aux = aux->next;
 		else
@@ -126,37 +124,3 @@ char	*check_env(char *str, char **env)
 	}
 	return (ft_strdup(""));
 }
-
-// void	check_here_doc(t_command *cmd, char **env)
-// {
-// 	int		pipe1[2];
-// 	char	*line;
-// 	char	*aux;
-// 	int		i;
-
-// 	i = 0;
-// 	while (cmd->limiter[i] && g_exit_status != 1)
-// 	{
-// 		pipe(pipe1);
-// 		write(2, "> ", 2);
-// 		line = get_next_line(0);
-// 		while (ft_strlen(cmd->limiter[i]) != (ft_strlen(line) - 1)
-// 			|| ft_strncmp(line, cmd->limiter[i], ft_strlen(cmd->limiter[i])))
-// 		{
-// 			if (g_exit_status == 1)
-// 				break ;
-// 			aux = expander_hdoc(line, env);
-// 			write(2, "> ", 2);
-// 			ft_putstr_fd(aux, pipe1[1]);
-// 			free(aux);
-// 			line = get_next_line(0);
-// 		}
-// 		if (g_exit_status == 1)
-// 			break ;
-// 		free(line);
-// 		close(pipe1[1]);
-// 		i++;
-// 	}
-// 	if (cmd->limiter)
-// 		cmd->heredoc = pipe1[0];
-// }

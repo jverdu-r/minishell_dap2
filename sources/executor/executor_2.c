@@ -124,7 +124,7 @@ void	heredoc_child(int *pre_p, int *ac_p, t_command *cmd)
 	if (!cmd->next)
 		close(ac_p[1]);
 	manage_dups(cmd, pre_p, ac_p);
-	if (cmd->heredoc && !cmd->args && cmd->in_fd <= 2)
+	if (cmd->heredoc && !cmd->args)
 	{
 		if (dup2(cmd->heredoc, 0) < 0)
 			(perror("minishell"), exit(1));
