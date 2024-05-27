@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 19:17:51 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/24 13:18:34 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/26 20:29:15 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int	ft_echo(t_command *cmd)
 	if (cmd->args)
 		print_args(cmd);
 	else
-		ft_putchar_fd('\n', cmd->out_fd);
+		printf("\n");
 	return (EXIT_SUCCESS);
 }

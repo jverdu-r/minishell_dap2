@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:32:32 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 08:56:48 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/27 03:29:26 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int	error_msg(char *msg)
 int	error_token(t_token token)
 {
 	ft_putstr_fd("minishell: sintax error near", 2);
-	ft_putstr_fd(" unexpected token `newline'\n", 2);
+	ft_putstr_fd(" unexpected token ", 2);
 	if (token == PIPE)
-		printf("'|'%i\n", STDERR_FILENO);
+		ft_putstr_fd("'|'\n", 2);
 	if (token == LESS)
-		printf("'<'%i\n", STDERR_FILENO);
+		ft_putstr_fd("'<'\n", 2);
 	if (token == LESS_LESS)
-		printf("'<<'%i\n", STDERR_FILENO);
+		ft_putstr_fd("'<<'\n", 2);
 	if (token == GREAT)
-		printf("'>'%i\n", STDERR_FILENO);
+		ft_putstr_fd("'>'\n", 2);
 	if (token == GREAT_GREAT)
-		printf("'>>'%i\n", STDERR_FILENO);
+		ft_putstr_fd("'>>'\n", 2);
 	g_exit_status = 2;
 	return (-1);
 }
