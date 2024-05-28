@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/25 17:57:50 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:47:09 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_command	*parser(t_toolbox *tools)
 		else if (aux->token > 1)
 			aux = redir_add(cmd, aux);
 		else if (!cmd->cmd && !aux->token)
-			cmd->cmd = ft_strdup(aux->str);
+			cmd->cmd = trimmed(aux->str, 0, 0);
 		else
 		{
 			if (!cmd->args)
