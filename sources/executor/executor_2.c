@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 22:23:21 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/22 17:38:30 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:25:29 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ void	manage_params_child(t_toolbox *tools, t_command *cmd)
 	cmd_arg = fill_args(cmd);
 	if (!cmd_arg)
 		(executor_error(cmd, "error in arguments"), exit(1));
+	if (!access(cmd->cmd, X_OK))
+		if (execve(cmd_rute, cmd_arg, tools->env) < 0)
+			(executor_error(cmd, "execve error"), exit(1));
 	path_rute = find_paths(tools->env);
 	if (!path_rute)
 		(executor_error(cmd, ": no such file or directory"), exit(127));
