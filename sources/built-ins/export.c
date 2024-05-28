@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:51:30 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/25 01:53:52 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/28 20:08:00 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	**add_variable(char **sort_env, char *cmd_arg)
 	if (!copy_env)
 		return (NULL);
 	i = 0;
+	if (!sort_env[0])
+		copy_env[0] = ft_strdup(cmd_arg);
 	while (sort_env[i])
 	{
 		if (!sort_env[i + 1])
