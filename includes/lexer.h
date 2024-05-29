@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:37:01 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 10:08:38 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/29 17:09:09 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ int		lexer_length(t_lexer *list);
 int		*init_ct(int cr);
 t_lexer	*lexer_new(char	*str, t_token token);
 t_lexer	*lexer_last(t_lexer *list);
+void	token_expander(t_toolbox *tools);
 #endif

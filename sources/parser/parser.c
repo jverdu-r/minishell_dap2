@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 09:43:37 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/29 17:10:41 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ t_command	*cmd_list(t_lexer *list)
 	return (cmd);
 }
 
-t_lexer	*redir_add(t_command *cmd, t_lexer *list, char **env)
+t_lexer	*redir_add(t_command *cmd, t_lexer *list)
 {
 	if (list->token == LESS)
 		redir_addback(&cmd->in_files, \
-			redir_new(expander(list->next->str, env, 0)));
+			redir_new(ft_strdup(list->next->str)));
 	if (list->token == GREAT || list->token == GREAT_GREAT)
 	{
 		redir_addback(&cmd->out_files, \
-			redir_new(expander(list->next->str, env, 0)));
+			redir_new(ft_strdup(list->next->str)));
 		if (list->token == GREAT_GREAT)
 			cmd->app = 1;
 		else
@@ -54,16 +54,16 @@ t_lexer	*redir_add(t_command *cmd, t_lexer *list, char **env)
 	return (list);
 }
 
-void	get_arg(t_command *cmd, char *str, char **env)
+void	get_arg(t_command *cmd, char *str)
 {
 	cmd->args = malloc(sizeof(char *) * 2);
 	if (!cmd->args)
 		cmd->args = NULL;
-	cmd->args[0] = expander(str, env, 0);
+	cmd->args[0] = ft_strdup(str);
 	cmd->args[1] = 0;
 }
 
-void	get_new_arg(t_command *cmd, char *str, char **env)
+void	get_new_arg(t_command *cmd, char *str)
 {
 	char	**aux;
 	int		i;
@@ -78,7 +78,7 @@ void	get_new_arg(t_command *cmd, char *str, char **env)
 		aux[i] = ft_strdup(cmd->args[i]);
 		i++;
 	}
-	aux[i] = expander(str, env, 0);
+	aux[i] = ft_strdup(str);
 	aux[i + 1] = 0;
 	free_arr(cmd->args);
 	cmd->args = aux;
@@ -96,15 +96,15 @@ t_command	*parser(t_toolbox *tools)
 		if (aux->token == PIPE)
 			cmd = cmd->next;
 		else if (aux->token > 1)
-			aux = redir_add(cmd, aux, tools->env);
+			aux = redir_add(cmd, aux);
 		else if (!cmd->cmd && !aux->token)
-			cmd->cmd = expander(aux->str, tools->env, 0);
+			cmd->cmd = ft_strdup(aux->str);
 		else
 		{
 			if (!cmd->args)
-				get_arg(cmd, aux->str, tools->env);
+				get_arg(cmd, aux->str);
 			else
-				get_new_arg(cmd, aux->str, tools->env);
+				get_new_arg(cmd, aux->str);
 		}
 		aux = aux->next;
 	}
