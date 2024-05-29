@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/28 12:47:09 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/28 21:55:55 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ t_command	*cmd_list(t_lexer *list)
 	return (cmd);
 }
 
-t_lexer	*redir_add(t_command *cmd, t_lexer *list)
+t_lexer	*redir_add(t_command *cmd, t_lexer *list, char **env)
 {
 	if (list->token == LESS)
 		redir_addback(&cmd->in_files, \
-			redir_new(trimmed(list->next->str, 0, 0)));
+			redir_new(expansor(list->next->str, env)));
 	if (list->token == GREAT || list->token == GREAT_GREAT)
 	{
 		redir_addback(&cmd->out_files, \
-			redir_new(trimmed(list->next->str, 0, 0)));
+			redir_new(expansor(list->next->str, env)));
 		if (list->token == GREAT_GREAT)
 			cmd->app = 1;
 		else
@@ -54,16 +54,16 @@ t_lexer	*redir_add(t_command *cmd, t_lexer *list)
 	return (list);
 }
 
-void	get_arg(t_command *cmd, char *str)
+void	get_arg(t_command *cmd, char *str, char **env)
 {
 	cmd->args = malloc(sizeof(char *) * 2);
 	if (!cmd->args)
 		cmd->args = NULL;
-	cmd->args[0] = trimmed(str, 0, 0);
+	cmd->args[0] = expansor(str, env);
 	cmd->args[1] = 0;
 }
 
-void	get_new_arg(t_command *cmd, char *str)
+void	get_new_arg(t_command *cmd, char *str, char **env)
 {
 	char	**aux;
 	int		i;
@@ -78,7 +78,7 @@ void	get_new_arg(t_command *cmd, char *str)
 		aux[i] = ft_strdup(cmd->args[i]);
 		i++;
 	}
-	aux[i] = trimmed(str, 0, 0);
+	aux[i] = expansor(str, env);
 	aux[i + 1] = 0;
 	free_arr(cmd->args);
 	cmd->args = aux;
@@ -96,15 +96,15 @@ t_command	*parser(t_toolbox *tools)
 		if (aux->token == PIPE)
 			cmd = cmd->next;
 		else if (aux->token > 1)
-			aux = redir_add(cmd, aux);
+			aux = redir_add(cmd, aux, tools->env);
 		else if (!cmd->cmd && !aux->token)
-			cmd->cmd = trimmed(aux->str, 0, 0);
+			cmd->cmd = expansor(aux->str, tools->env);
 		else
 		{
 			if (!cmd->args)
-				get_arg(cmd, aux->str);
+				get_arg(cmd, aux->str, tools->env);
 			else
-				get_new_arg(cmd, aux->str);
+				get_new_arg(cmd, aux->str, tools->env);
 		}
 		aux = aux->next;
 	}

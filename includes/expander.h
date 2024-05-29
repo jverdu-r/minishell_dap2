@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:59:56 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/22 16:34:53 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:52:13 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ char	*check_str(char *str, char **env);
 void	check_voids(t_command *cmd);
 int		ft_exp_stop(char c);
 char	*get_exp_value(char *str);
+
+char	*expansor(char *str, char **env);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_one.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/28 19:51:38 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/29 02:55:55 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,131 @@ char	*check_str(char *str, char **env)
 	aux = check_str_two(str, env, i, qt);
 	free(qt);
 	return (aux);
+}
+
+char	*expand(char *str, int i, char **env)
+{
+	char	*aux;
+	char	*res;
+
+	res = ft_strdup("");
+	while (str[i] && str[i] != '\"')
+	{
+		aux = res;
+		if (str[i] == '$' && str[i + 1])
+		{
+			res = var_exp(str, aux, i, env);
+			i = ovarpass(str, i);
+		}
+		else
+			res = charjoin(aux, str[i]);
+		i++;
+	}
+	return (res);
+}
+
+char	*noqt(char *str, int i, char **env)
+{
+	char	*aux;
+	char	*res;
+
+	res = ft_strdup("");
+	while (str[i])
+	{
+		if (str[i] == '\"' || str[i] == '\'')
+			break ;
+		aux = res;
+		if (str[i] == '$' && str[i + 1])
+		{
+			res = var_exp(str, aux, i, env);
+			i = ovarpass(str, i);
+		}
+		else
+			res = charjoin(aux, str[i]);
+		i++;
+	}
+	return (res);
+}
+
+char	*extract(char *str, int i)
+{
+	int		j;
+	char	*res;
+
+	j = i + 1;
+	while (str[j] && str[j] != '\'')
+		j++;
+	j--;
+	res = ft_substr(str, i + 1, j - i);
+	return (res);
+}
+
+int	check_next(char *str, int i, char c)
+{
+	if (c == '\"')
+	{
+		i++;
+		while (str[i] && str[i] != '\"')
+			i++;
+		return (i);
+	}
+	if (c == '\'')
+	{
+		i++;
+		while (str[i] && str[i] != '\'')
+			i++;
+		return (i);
+	}
+	else
+	{
+		while (str[i])
+		{
+			if (str[i] == '\"' || str[i] == '\'')
+				break ;
+			i++;
+		}
+		return (i);
+	}
+}
+
+char	*expansor(char *str, char **env)
+{
+	int		i;
+	char	*aux;
+	char	*res;
+	char	*exp;
+
+	i = 0;
+	res = ft_strdup("");
+	while (str[i])
+	{
+		aux = res;
+		if (str[i] && str[i] == '\"')
+		{
+			exp = expand(str, i + 1, env);
+			i = check_next(str, i, '\"');
+			res = ft_strjoin(aux, exp);
+			free(aux);
+			free(exp);
+			i++;
+		}
+		else if (str[i] && str[i] == '\'')
+		{
+			exp = extract(str, i);
+			i = check_next(str, i, '\'');
+			res = ft_strjoin(aux, exp);
+			free(aux);
+			free(exp);
+			i++;
+		}
+		else if (str[i] && str[i] != '\'' && str[i] != '\"')
+		{
+			exp = noqt(str, i, env);
+			i = check_next(str, i, 'c');
+			res = ft_strjoin(aux, exp);
+			free(aux);
+			free(exp);
+		}
+	}
+	return (res);
 }
