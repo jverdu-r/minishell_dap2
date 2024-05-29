@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/28 21:55:55 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/29 09:43:37 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ t_lexer	*redir_add(t_command *cmd, t_lexer *list, char **env)
 {
 	if (list->token == LESS)
 		redir_addback(&cmd->in_files, \
-			redir_new(expansor(list->next->str, env)));
+			redir_new(expander(list->next->str, env, 0)));
 	if (list->token == GREAT || list->token == GREAT_GREAT)
 	{
 		redir_addback(&cmd->out_files, \
-			redir_new(expansor(list->next->str, env)));
+			redir_new(expander(list->next->str, env, 0)));
 		if (list->token == GREAT_GREAT)
 			cmd->app = 1;
 		else
@@ -59,7 +59,7 @@ void	get_arg(t_command *cmd, char *str, char **env)
 	cmd->args = malloc(sizeof(char *) * 2);
 	if (!cmd->args)
 		cmd->args = NULL;
-	cmd->args[0] = expansor(str, env);
+	cmd->args[0] = expander(str, env, 0);
 	cmd->args[1] = 0;
 }
 
@@ -78,7 +78,7 @@ void	get_new_arg(t_command *cmd, char *str, char **env)
 		aux[i] = ft_strdup(cmd->args[i]);
 		i++;
 	}
-	aux[i] = expansor(str, env);
+	aux[i] = expander(str, env, 0);
 	aux[i + 1] = 0;
 	free_arr(cmd->args);
 	cmd->args = aux;
@@ -98,7 +98,7 @@ t_command	*parser(t_toolbox *tools)
 		else if (aux->token > 1)
 			aux = redir_add(cmd, aux, tools->env);
 		else if (!cmd->cmd && !aux->token)
-			cmd->cmd = expansor(aux->str, tools->env);
+			cmd->cmd = expander(aux->str, tools->env, 0);
 		else
 		{
 			if (!cmd->args)

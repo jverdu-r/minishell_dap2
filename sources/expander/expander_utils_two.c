@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_two.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daparici <daparici@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:55:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/25 03:40:55 by daparici         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:59:38 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ int	ovarpass(char *str, int i)
 	}
 	i--;
 	return (i);
-}
-
-int	*init_qt(void)
-{
-	int	*qt;
-
-	qt = ft_calloc(sizeof(int), 2);
-	qt[0] = 0;
-	qt[1] = 0;
-	return (qt);
 }
 
 char	*expnd(char *str, char **env)
@@ -63,24 +53,54 @@ char	*expnd(char *str, char **env)
 	return (aux);
 }
 
-char	*init_aux(void)
+int	check_next(char *str, int i, char c)
 {
-	char	*aux;
-
-	aux = ft_calloc(sizeof(char), 1);
-	aux[0] = 0;
-	return (aux);
+	if (c == '\"')
+	{
+		i++;
+		while (str[i] && str[i] != '\"')
+			i++;
+		return (i);
+	}
+	if (c == '\'')
+	{
+		i++;
+		while (str[i] && str[i] != '\'')
+			i++;
+		return (i);
+	}
+	else
+	{
+		while (str[i])
+		{
+			if (str[i] == '\"' || str[i] == '\'')
+				break ;
+			i++;
+		}
+		return (i);
+	}
 }
 
-char	*check_exp_redir(char *str, char **env)
+char	*var_exp(char *str, char *aux, int i, char **env)
 {
-	int		*qt;
-	int		i;
+	char	*exp;
 	char	*res;
 
-	qt = init_qt();
-	i = 0;
-	res = check_str_two(str, env, i, qt);
-	free(qt);
-	return (trimmed(res, 0, 0));
+	if (str[i + 1] == '\"' || is_white_space(str[i + 1]))
+		res = charjoin(aux, str[i]);
+	else
+	{
+		while (str[i])
+		{
+			if (str[i] == '$')
+				i++;
+			else
+				break ;
+		}
+		exp = var_find(str, i, env);
+		res = ft_strjoin(aux, exp);
+		free(aux);
+		free(exp);
+	}
+	return (res);
 }

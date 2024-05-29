@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/28 19:27:41 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:33:20 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ int	token_reader(t_toolbox *tools)
 			j += read_words(tools->args, i, &tools->lexer_list);
 		i += j;
 	}
-	//token_expander(tools);
 	return (0);
 }
