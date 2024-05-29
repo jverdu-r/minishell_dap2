@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:06:57 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 17:26:08 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:33:35 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ char	*noqt(char *str, int i, char **env)
 	while (str[i])
 	{
 		if (str[i] == '\"' || str[i] == '\'')
-		{
-			if (str[i] == str[i + 1])
-				return (ft_strdup(""));
-		}
+			break ;
 		aux = res;
 		if (str[i] == '$' && str[i + 1])
 		{
