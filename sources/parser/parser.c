@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 17:10:41 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:57:12 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_command	*parser(t_toolbox *tools)
 			cmd = cmd->next;
 		else if (aux->token > 1)
 			aux = redir_add(cmd, aux);
-		else if (!cmd->cmd && !aux->token)
+		else if (!cmd->cmd && aux->token == 0)
 			cmd->cmd = ft_strdup(aux->str);
 		else
 		{

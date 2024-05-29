@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:21:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 09:58:12 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/29 17:27:05 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ char	*get_exp_value(char *str)
 	char	*value;
 
 	i = 0;
+	if (!str)
+		return (NULL);
 	while (str && str[i] != '=')
 		i++;
 	value = ft_substr(str, i + 1, ft_strlen(str) - 1);
