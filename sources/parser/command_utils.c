@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:48:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/26 13:54:00 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/30 09:44:54 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,19 @@ void	cmd_free(t_command *cmd)
 		cmd->prev = NULL;
 	}
 	scmd_free(cmd);
+}
+
+t_lexer	*get_cmd(t_command *cmd, t_lexer *list, char **env)
+{
+	char	*exp;
+
+	exp = expander(list->str, env, 0);
+	while (list && ft_strlen(exp) < 1)
+	{
+		list = list->next;
+		free(exp);
+		exp = expander(list->str, env, 0);
+	}
+	cmd->cmd = exp;
+	return (list);
 }

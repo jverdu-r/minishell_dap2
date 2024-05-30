@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/26 16:23:14 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/30 09:42:32 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ char		**lim_add(char **limts, int lim, char *str);
 char		*get_home(void);
 int			check_input_st(char *str);
 int			is_white_space(char c);
+t_lexer		*get_cmd(t_command *cmd, t_lexer *list, char **env);
 #endif

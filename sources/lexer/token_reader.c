@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 19:08:16 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/30 09:25:34 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,20 @@ char	*create_msg(char *str)
 int	ck_list_one(t_lexer *list)
 {
 	int		i;
-	char	c;
 	char	*msg;
 
 	i = 0;
-	c = list->str[i];
 	msg = create_msg(list->str);
-	if (list->str[i] == '\'' || list->str[i] == '\"')
+	while (list->str[i])
 	{
-		if (list->str[i + 1] == c)
-			return (ft_putstr_fd(msg, 2), free(msg), 0);
-		else
+		if (is_white_space(list->str[i]))
 			i++;
+		else if (list->str[i] == '\'' || list->str[i] == '\"')
+			i++;
+		else
+			return (free(msg), 1);
 	}
-	while (list->str[i] != c)
-	{
-		if (!is_white_space(list->str[i]))
-			return (ft_putstr_fd(msg, 2), free(msg), 0);
-		if (list->str[i + 1] == c)
-			return (ft_putstr_fd(msg, 2), free(msg), 0);
-		i++;
-	}
+	return (ft_putstr_fd(msg, 2), free(msg), 0);
 	return (free(msg), 1);
 }
 
@@ -107,8 +100,7 @@ int	token_reader(t_toolbox *tools)
 		i += j;
 	}
 	if (ck_list_one(tools->lexer_list))
-		token_expander(tools);
+		return (0);
 	else
 		return (1);
-	return (0);
 }

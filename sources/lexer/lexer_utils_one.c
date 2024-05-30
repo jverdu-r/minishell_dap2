@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:21:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 18:37:39 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:41:42 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	lexer_addback(t_lexer **head, t_lexer *new)
 {
 	t_lexer	*tmp;
 
-	if (new->str || new->token > 0)
+	if (ft_strlen(new->str) > 0 || new->token > 0)
 	{
 		tmp = *head;
 		if (*head == NULL)

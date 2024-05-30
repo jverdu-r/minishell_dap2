@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:28:22 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/29 17:58:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:54:27 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void	lexer_free(t_lexer *list)
 		while (list)
 		{
 			if (list->token == 0 || list->str)
-			{
 				free(list->str);
-			}
 			aux = list;
 			if (list->next)
 			{
