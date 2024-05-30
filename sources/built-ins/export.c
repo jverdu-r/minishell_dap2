@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 20:51:30 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/28 20:08:00 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:21:03 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,22 @@ void	print_export(char **env)
 {
 	int	i;
 	int	k;
+	int	bool;
 
 	i = 0;
 	while (env[i])
 	{
+		bool = 0;
 		k = 0;
 		ft_putstr_fd("declare -x ", STDOUT_FILENO);
 		while (env[i][k])
 		{
 			ft_putchar_fd(env[i][k], STDOUT_FILENO);
-			if (env[i][k++] == '=')
+			if (env[i][k++] == '=' && bool == 0)
+			{
 				ft_putchar_fd('\"', STDOUT_FILENO);
+				bool = 1;
+			}
 		}
 		if (ft_strchr(env[i], '='))
 			ft_putchar_fd('\"', STDOUT_FILENO);
