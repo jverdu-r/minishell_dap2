@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 09:42:32 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/30 19:04:52 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ char		*get_home(void);
 int			check_input_st(char *str);
 int			is_white_space(char c);
 t_lexer		*get_cmd(t_command *cmd, t_lexer *list, char **env);
+
+t_lexer		*get_new_arg(t_command *cmd, t_lexer *list, char **env);
+t_lexer		*get_arg(t_command *cmd, t_lexer *list, char **env);
+t_lexer		*extract_str(t_command *cmd, t_lexer *aux, char **env);
+char		**cp_ad_args(char **args, char *str);
 #endif

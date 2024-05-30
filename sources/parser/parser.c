@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 09:44:37 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/30 19:07:10 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,48 @@ t_lexer	*redir_add(t_command *cmd, t_lexer *list, char **env)
 	return (list);
 }
 
-void	get_arg(t_command *cmd, char *str, char **env)
+t_lexer	*get_arg(t_command *cmd, t_lexer *list, char **env)
 {
+	char	*exp;
+
+	if (ft_strlen(list->str) > 0)
+	{
+		exp = expander(list->str, env, 0);
+		if (ft_strlen(exp) == 0)
+		{
+			free(exp);
+			return (list);
+		}
+	}
+	else
+		exp = ft_strdup("");
 	cmd->args = malloc(sizeof(char *) * 2);
 	if (!cmd->args)
 		cmd->args = NULL;
-	cmd->args[0] = expander(str, env, 0);
+	cmd->args[0] = exp;
 	cmd->args[1] = 0;
+	return (list);
 }
 
-void	get_new_arg(t_command *cmd, char *str, char **env)
+t_lexer	*get_new_arg(t_command *cmd, t_lexer *list, char **env)
 {
 	char	**aux;
-	int		i;
+	char	*exp;
 
-	i = 0;
-	while (cmd->args[i])
-		i++;
-	aux = malloc(sizeof(char *) * (i + 2));
-	i = 0;
-	while (cmd->args[i])
+	if (ft_strlen(list->str) > 0)
 	{
-		aux[i] = ft_strdup(cmd->args[i]);
-		i++;
+		exp = expander(list->str, env, 0);
+		if (ft_strlen(exp) == 0)
+		{
+			free(exp);
+			return (list);
+		}
 	}
-	aux[i] = expander(str, env, 0);
-	aux[i + 1] = 0;
-	free_arr(cmd->args);
+	else
+		exp = ft_strdup("");
+	aux = cp_ad_args(cmd->args, exp);
 	cmd->args = aux;
+	return (list);
 }
 
 t_command	*parser(t_toolbox *tools)
@@ -97,16 +111,10 @@ t_command	*parser(t_toolbox *tools)
 			cmd = cmd->next;
 		else if (aux->token > 1)
 			aux = redir_add(cmd, aux, tools->env);
-		else if (!cmd->cmd && !aux->token)
-			aux = get_cmd(cmd, aux, tools->env);
 		else
-		{
-			if (!cmd->args)
-				get_arg(cmd, aux->str, tools->env);
-			else
-				get_new_arg(cmd, aux->str, tools->env);
-		}
-		aux = aux->next;
+			aux = extract_str(cmd, aux, tools->env);
+		if (aux)
+			aux = aux->next;
 	}
 	while (cmd->prev)
 		cmd = cmd->prev;
