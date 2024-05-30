@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 09:25:34 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/30 19:36:20 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,24 @@ int	read_words(char *args, int i, t_lexer **list)
 	return (j);
 }
 
-char	*create_msg(char *str)
+char	*create_msg(char *str, char **env)
 {
 	char	*aux;
 	char	*res;
 
-	aux = ft_substr(str, 1, ft_strlen(str) - 2);
+	aux = expander(str, env, 0);
 	res = ft_strjoin(aux, " : Command not found\n");
 	free(aux);
 	return (res);
 }
 
-int	ck_list_one(t_lexer *list)
+int	ck_list_one(t_lexer *list, char **env)
 {
 	int		i;
 	char	*msg;
 
 	i = 0;
-	msg = create_msg(list->str);
+	msg = create_msg(list->str, env);
 	while (list->str[i])
 	{
 		if (is_white_space(list->str[i]))
@@ -99,7 +99,7 @@ int	token_reader(t_toolbox *tools)
 			j += read_words(tools->args, i, &tools->lexer_list);
 		i += j;
 	}
-	if (ck_list_one(tools->lexer_list))
+	if (ck_list_one(tools->lexer_list, tools->env))
 		return (0);
 	else
 		return (1);
