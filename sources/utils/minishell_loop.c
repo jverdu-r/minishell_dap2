@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 19:17:59 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/30 20:07:13 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	exit_code(int ex)
 void	routine(t_toolbox *tools)
 {
 	tools->cmd = parser(tools);
-	if (ft_strlen(tools->cmd->cmd) > 0)
+	if (tools->cmd && ft_strlen(tools->cmd->cmd) > 0)
 	{
 		if (get_fds(tools->cmd) == 0)
 			ft_executor(tools);

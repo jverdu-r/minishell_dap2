@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 19:07:10 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/30 19:58:42 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,12 @@ t_command	*parser(t_toolbox *tools)
 		if (aux->token == PIPE)
 			cmd = cmd->next;
 		else if (aux->token > 1)
-			aux = redir_add(cmd, aux, tools->env);
+		{
+			if (check_rd_str(aux, tools->env))
+				return (bad_redir(cmd, aux));
+			else
+				aux = redir_add(cmd, aux, tools->env);
+		}
 		else
 			aux = extract_str(cmd, aux, tools->env);
 		if (aux)

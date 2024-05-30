@@ -6,11 +6,13 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/05/30 19:17:12 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/30 20:16:15 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+extern int	g_exit_status;
 
 t_lexer	*get_cmd(t_command *cmd, t_lexer *list, char **env)
 {
@@ -69,5 +71,53 @@ t_lexer	*extract_str(t_command *cmd, t_lexer *aux, char **env)
 		else
 			aux = get_new_arg(cmd, aux, env);
 	}
+	return (aux);
+}
+
+int	check_rd_str(t_lexer *list, char **env)
+{
+	t_lexer	*aux;
+	char	*exp;
+
+	aux = list;
+	exp = NULL;
+	if (aux->token == LESS_LESS)
+		return (0);
+	else
+	{
+		aux = aux->next;
+		if (aux && aux->str)
+		{
+			if (ft_strlen(aux->str) > 0)
+			{
+				exp = expander(aux->str, env, 0);
+				if (ft_strlen(exp) > 0)
+					return (free(exp), 0);
+				else
+					return (free(exp), 1);
+			}
+			else
+				return (1);
+		}
+	}
+	return (0);
+}
+
+t_command	*bad_redir(t_command *cmd, t_lexer *list)
+{
+	t_command	*aux;
+	char		*msg;
+
+	aux = NULL;
+	cmd_free(cmd);
+	list = list->next;
+	if (ft_strlen(list->str) == 0)
+		msg = ft_strdup("No existe el archivo o directorio\n");
+	else
+		msg = ft_strjoin(list->str, ": redirediconamiento ambiguo\n");
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(msg, 2);
+	free(msg);
+	g_exit_status = 1;
 	return (aux);
 }
