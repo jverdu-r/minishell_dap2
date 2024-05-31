@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:22:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 19:42:02 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/31 09:34:11 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,12 @@ int	get_fds(t_command *raw_cmd)
 		if (cmd->in_fd == -1 && !cmd->next)
 			return (1);
 		if (cmd->out_files)
-			check_out_fd(cmd);
+		{
+			if (check_void_redir(cmd->out_files->file))
+				check_out_fd(cmd);
+			else
+				return (1);
+		}
 		if (cmd->next)
 			cmd = cmd->next;
 		else

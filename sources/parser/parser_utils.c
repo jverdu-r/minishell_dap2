@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/05/30 20:16:15 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/31 09:45:15 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_command	*bad_redir(t_command *cmd, t_lexer *list)
 	cmd_free(cmd);
 	list = list->next;
 	if (ft_strlen(list->str) == 0)
-		msg = ft_strdup("No existe el archivo o directorio\n");
+		msg = ft_strdup("No such file or directory\n");
 	else
 		msg = ft_strjoin(list->str, ": redirediconamiento ambiguo\n");
 	ft_putstr_fd("minishell: ", 2);

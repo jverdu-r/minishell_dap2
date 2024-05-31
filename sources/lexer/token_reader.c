@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 19:36:20 by jorge            ###   ########.fr       */
+/*   Updated: 2024/05/31 09:43:02 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,23 @@ int	ck_list_one(t_lexer *list, char **env)
 	char	*msg;
 
 	i = 0;
-	msg = create_msg(list->str, env);
-	while (list->str[i])
+	if (list->str)
 	{
-		if (is_white_space(list->str[i]))
-			i++;
-		else if (list->str[i] == '\'' || list->str[i] == '\"')
-			i++;
-		else
-			return (free(msg), 1);
-	}
-	return (ft_putstr_fd(msg, 2), free(msg), 0);
-	return (free(msg), 1);
+		msg = create_msg(list->str, env);
+		while (list->str[i])
+		{
+			if (is_white_space(list->str[i]))
+				i++;
+			else if (list->str[i] == '\'' || list->str[i] == '\"')
+				i++;
+			else
+				return (free(msg), 1);
+		}
+		return (ft_putstr_fd(msg, 2), free(msg), 0);
+		return (free(msg), 1);
+		}
+	else
+		return (1);
 }
 
 int	token_reader(t_toolbox *tools)

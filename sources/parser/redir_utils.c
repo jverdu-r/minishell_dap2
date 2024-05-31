@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:43:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/26 16:22:50 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:31:22 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,18 @@ void	redir_free(t_redir *redir)
 	}
 	free(redir->file);
 	free(redir);
+}
+
+int	check_void_redir(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!is_white_space(str[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }
