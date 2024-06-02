@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/05/31 09:45:15 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/02 11:53:22 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ t_lexer	*get_cmd(t_command *cmd, t_lexer *list, char **env)
 		if (exp)
 			free(exp);
 		if (list->str && list->token == 0)
+		{
 			exp = expander(list->str, env, 0);
+			if (ft_strlen(exp) > 0)
+				break ;
+		}
 		else
 		{
 			exp = NULL;
@@ -114,7 +118,7 @@ t_command	*bad_redir(t_command *cmd, t_lexer *list)
 	if (ft_strlen(list->str) == 0)
 		msg = ft_strdup("No such file or directory\n");
 	else
-		msg = ft_strjoin(list->str, ": redirediconamiento ambiguo\n");
+		msg = ft_strjoin(list->str, ": ambiguous redirect\n");
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
 	free(msg);
