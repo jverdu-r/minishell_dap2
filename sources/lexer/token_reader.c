@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:46:24 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/31 09:43:02 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/02 13:48:19 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ck_list_one(t_lexer *list, char **env)
 	char	*msg;
 
 	i = 0;
-	if (list->str)
+	if (list && list->str)
 	{
 		msg = create_msg(list->str, env);
 		while (list->str[i])
@@ -78,7 +78,7 @@ int	ck_list_one(t_lexer *list, char **env)
 		}
 		return (ft_putstr_fd(msg, 2), free(msg), 0);
 		return (free(msg), 1);
-		}
+	}
 	else
 		return (1);
 }
