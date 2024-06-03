@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:53:02 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/23 18:46:30 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/03 09:35:13 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,17 @@ extern int	g_exit_status;
 
 void	ft_executor(t_toolbox *tools)
 {
-	t_command	*aux;
-
-	aux = tools->cmd;
-	while (aux)
+	if (tools->cmd)
 	{
-		if (aux->heredoc)
+		if (ft_lstsize_m(tools->cmd) > 1)
+			ft_executor_loop(tools->cmd, tools);
+		else
 		{
-			resolve_heredocs(tools->cmd, tools->env);
-			break ;
+			if (ft_is_builtin(tools->cmd) == 0)
+				ft_is_builtin_2(tools, tools->cmd);
+			else if (ft_is_builtin(tools->cmd) != 0 && tools->cmd->cmd)
+				simple_command(tools, tools->cmd);
 		}
-		aux = aux->next;
-	}
-	if (ft_lstsize_m(tools->cmd) > 1)
-		ft_executor_loop(tools->cmd, tools);
-	else
-	{
-		if (ft_is_builtin(tools->cmd) == 0)
-			ft_is_builtin_2(tools, tools->cmd);
-		else if (ft_is_builtin(tools->cmd) != 0 && tools->cmd->cmd)
-			simple_command(tools, tools->cmd);
 	}
 }
 
@@ -77,22 +68,26 @@ void	simple_command(t_toolbox *tools, t_command *cmd)
 
 int	ft_is_builtin(t_command *cmd)
 {
-	if (ft_strcmp(cmd->cmd, "pwd") == 0)
-		return (0);
-	else if (ft_strcmp(cmd->cmd, "echo") == 0)
-		return (0);
-	else if (ft_strcmp(cmd->cmd, "env") == 0)
-		return (0);
-	else if (ft_strcmp(cmd->cmd, "export") == 0)
-		return (0);
-	else if (ft_strcmp(cmd->cmd, "unset") == 0)
-		return (0);
-	else if (ft_strcmp(cmd->cmd, "cd") == 0)
-		return (0);
-	else if (ft_strcmp(cmd->cmd, "exit") == 0)
-		return (0);
-	else
-		return (1);
+	if (cmd)
+	{
+		if (ft_strcmp(cmd->cmd, "pwd") == 0)
+			return (0);
+		else if (ft_strcmp(cmd->cmd, "echo") == 0)
+			return (0);
+		else if (ft_strcmp(cmd->cmd, "env") == 0)
+			return (0);
+		else if (ft_strcmp(cmd->cmd, "export") == 0)
+			return (0);
+		else if (ft_strcmp(cmd->cmd, "unset") == 0)
+			return (0);
+		else if (ft_strcmp(cmd->cmd, "cd") == 0)
+			return (0);
+		else if (ft_strcmp(cmd->cmd, "exit") == 0)
+			return (0);
+		else
+			return (1);
+	}
+	return (1);
 }
 
 void	ft_is_builtin_2(t_toolbox *tools, t_command *cmd)

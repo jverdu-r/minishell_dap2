@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/06/02 11:53:22 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:35:46 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,25 @@ t_lexer	*get_cmd(t_command *cmd, t_lexer *list, char **env)
 
 	if (list->str && list->token == 0)
 		exp = expander(list->str, env, 0);
-	else
-		exp = NULL;
 	while (list && ft_strlen(exp) < 1)
 	{
 		if (exp)
 			free(exp);
 		if (list->str && list->token == 0)
-		{
 			exp = expander(list->str, env, 0);
-			if (ft_strlen(exp) > 0)
-				break ;
-		}
+		if (ft_strlen(exp) == 0 && !list->next->token)
+			list = list->next;
 		else
-		{
-			exp = NULL;
 			break ;
-		}
-		list = list->next;
 	}
-	cmd->cmd = exp;
+	if (ft_strlen(exp) > 0)
+		cmd->cmd = exp;
+	else
+	{
+		if (exp)
+			free(exp);
+		cmd->cmd = ft_strdup("");
+	}
 	return (list);
 }
 
@@ -113,7 +112,6 @@ t_command	*bad_redir(t_command *cmd, t_lexer *list)
 	char		*msg;
 
 	aux = NULL;
-	cmd_free(cmd);
 	list = list->next;
 	if (ft_strlen(list->str) == 0)
 		msg = ft_strdup("No such file or directory\n");
@@ -122,6 +120,9 @@ t_command	*bad_redir(t_command *cmd, t_lexer *list)
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(msg, 2);
 	free(msg);
+	while (cmd->prev)
+		cmd = cmd->prev;
+	cmd_free(cmd);
 	g_exit_status = 1;
 	return (aux);
 }

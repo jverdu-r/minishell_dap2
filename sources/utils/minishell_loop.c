@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/02 11:49:50 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:11:13 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,21 @@ int	exit_code(int ex)
 
 void	routine(t_toolbox *tools)
 {
+	t_command	*aux;
+
 	tools->cmd = parser(tools);
-	if (tools->cmd && ft_strlen(tools->cmd->cmd) > 0)
+	aux = tools->cmd;
+	while (aux)
 	{
-		if (get_fds(tools->cmd) == 0)
-			ft_executor(tools);
+		if (aux->heredoc)
+		{
+			resolve_heredocs(tools->cmd, tools->env);
+			break ;
+		}
+		aux = aux->next;
 	}
+	if (get_fds(tools->cmd) == 0)
+		ft_executor(tools);
 }
 
 int	minishell_loop(t_toolbox *tools)

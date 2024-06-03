@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:39:42 by davidaparic       #+#    #+#             */
-/*   Updated: 2024/05/26 16:35:10 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:36:26 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-extern sig_atomic_t	g_exit_status;
 
 char	*get_env_dir(t_toolbox *tools, char *arg)
 {
