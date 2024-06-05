@@ -6,7 +6,7 @@
 #    By: jorge <jorge@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/24 15:20:41 by jverdu-r          #+#    #+#              #
-#    Updated: 2024/05/30 18:35:13 by jorge            ###   ########.fr        #
+#    Updated: 2024/06/05 12:08:29 by jorge            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS	=	sources/main.c \
 			sources/lexer/token_utils.c \
 			sources/parser/command_utils.c \
 			sources/parser/redir_utils.c \
+			sources/parser/redir_utils_2.c \
 			sources/parser/parser.c \
 			sources/parser/parser_utils.c \
 			sources/parser/handle_redirs.c \

@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 18:38:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/30 19:58:42 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 12:28:31 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ t_command	*cmd_list(t_lexer *list)
 	return (cmd);
 }
 
-t_lexer	*redir_add(t_command *cmd, t_lexer *list, char **env)
+t_lexer	*redir_add(t_command *cmd, t_lexer *list)
 {
 	if (list->token == LESS)
 		redir_addback(&cmd->in_files, \
-			redir_new(expander(list->next->str, env, 0)));
+			redir_new(ft_strdup(list->next->str)));
 	if (list->token == GREAT || list->token == GREAT_GREAT)
 	{
 		redir_addback(&cmd->out_files, \
-			redir_new(expander(list->next->str, env, 0)));
+			redir_new(ft_strdup(list->next->str)));
 		if (list->token == GREAT_GREAT)
 			cmd->app = 1;
 		else
@@ -110,12 +110,7 @@ t_command	*parser(t_toolbox *tools)
 		if (aux->token == PIPE)
 			cmd = cmd->next;
 		else if (aux->token > 1)
-		{
-			if (check_rd_str(aux, tools->env))
-				return (bad_redir(cmd, aux));
-			else
-				aux = redir_add(cmd, aux, tools->env);
-		}
+			aux = redir_add(cmd, aux);
 		else
 			aux = extract_str(cmd, aux, tools->env);
 		if (aux)

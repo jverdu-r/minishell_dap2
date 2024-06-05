@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/03 09:11:13 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 12:48:53 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,11 @@ void	routine(t_toolbox *tools)
 		}
 		aux = aux->next;
 	}
-	if (get_fds(tools->cmd) == 0)
-		ft_executor(tools);
+	if (!check_redir(tools->cmd, tools->env))
+	{
+		if (get_fds(tools->cmd) == 0)
+			ft_executor(tools);
+	}
 }
 
 int	minishell_loop(t_toolbox *tools)

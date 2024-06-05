@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/06/03 09:35:46 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 12:46:32 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,52 +77,45 @@ t_lexer	*extract_str(t_command *cmd, t_lexer *aux, char **env)
 	return (aux);
 }
 
-int	check_rd_str(t_lexer *list, char **env)
+int	bad_redir(char *str)
 {
-	t_lexer	*aux;
+	char		*msg;
+
+	if (ft_strlen(str) == 0)
+		msg = ft_strdup("No such file or directory\n");
+	else
+		msg = ft_strjoin(str, ": ambiguous redirect\n");
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(msg, 2);
+	free(msg);
+	g_exit_status = 1;
+	return (1);
+}
+
+int	check_rd_str(t_redir *list, char **env)
+{
+	t_redir	*aux;
 	char	*exp;
 
 	aux = list;
 	exp = NULL;
-	if (aux->token == LESS_LESS)
-		return (0);
-	else
+	while (aux)
 	{
-		aux = aux->next;
-		if (aux && aux->str)
+		if (aux->file)
 		{
-			if (ft_strlen(aux->str) > 0)
+			if (ft_strlen(aux->file) > 0)
 			{
-				exp = expander(aux->str, env, 0);
+				exp = expander(aux->file, env, 0);
 				if (ft_strlen(exp) > 0)
-					return (free(exp), 0);
+				{
+					free(aux->file);
+					aux->file = exp;
+				}
 				else
-					return (free(exp), 1);
+					return (free(exp), bad_redir(aux->file));
 			}
-			else
-				return (1);
 		}
+		aux = aux->next;
 	}
 	return (0);
-}
-
-t_command	*bad_redir(t_command *cmd, t_lexer *list)
-{
-	t_command	*aux;
-	char		*msg;
-
-	aux = NULL;
-	list = list->next;
-	if (ft_strlen(list->str) == 0)
-		msg = ft_strdup("No such file or directory\n");
-	else
-		msg = ft_strjoin(list->str, ": ambiguous redirect\n");
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(msg, 2);
-	free(msg);
-	while (cmd->prev)
-		cmd = cmd->prev;
-	cmd_free(cmd);
-	g_exit_status = 1;
-	return (aux);
 }
