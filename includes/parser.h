@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 13:43:38 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 17:21:53 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_lexer		*get_new_arg(t_command *cmd, t_lexer *list, char **env);
 t_lexer		*get_arg(t_command *cmd, t_lexer *list, char **env);
 t_lexer		*extract_str(t_command *cmd, t_lexer *aux, char **env);
 char		**cp_ad_args(char **args, char *str);
-int			check_rd_str(t_redir *list, char **env);
+int			check_rd_str(t_redir *list, char **env, char *exp, int o);
 int			bad_redir(char *str);
 int			check_void_redir(char *str);
 int			check_redir(t_command *cmd, char **env);

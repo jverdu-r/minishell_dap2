@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/06/05 13:41:12 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 17:04:54 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,11 @@ int	bad_redir(char *str)
 	return (1);
 }
 
-int	check_rd_str(t_redir *list, char **env)
+int	check_rd_str(t_redir *list, char **env, char *exp, int o)
 {
 	t_redir	*aux;
-	char	*exp;
 
 	aux = list;
-	exp = NULL;
 	while (aux)
 	{
 		if (aux->file)
@@ -110,10 +108,11 @@ int	check_rd_str(t_redir *list, char **env)
 				{
 					free(aux->file);
 					aux->file = exp;
-					opn_cls(aux->file);
+					if (o == 1)
+						opn_cls(aux->file);
 				}
 				else
-					return (free(exp), bad_redir(aux->file));
+					return (free(exp), bad_redir(aux->file), 1);
 			}
 		}
 		aux = aux->next;

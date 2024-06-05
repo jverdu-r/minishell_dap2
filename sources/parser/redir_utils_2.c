@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:19:34 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 13:43:45 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 17:39:48 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,27 @@
 int	check_redir(t_command *cmd, char **env)
 {
 	t_command	*aux;
+	char		*exp;
 
 	aux = cmd;
+	exp = NULL;
 	while (aux)
 	{
 		if (aux->in_files)
 		{
-			if (check_rd_str(aux->in_files, env))
+			if (check_rd_str(aux->in_files, env, exp, 0) && !aux->next)
 				return (1);
 		}
 		if (aux->out_files)
 		{
-			if (check_rd_str(aux->out_files, env))
+			if (check_rd_str(aux->out_files, env, exp, 1) && !aux->next)
 				return (1);
 		}
 		aux = aux->next;
 	}
 	return (0);
 }
+
 void	opn_cls(char *str)
 {
 	int	fd;
