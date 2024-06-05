@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:22:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 11:24:01 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:23:35 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,7 @@ int	get_fds(t_command *raw_cmd)
 			else
 				return (1);
 		}
-		if (cmd->next)
-			cmd = cmd->next;
-		else
-			break ;
+		cmd = cmd->next;
 	}
 	return (0);
 }

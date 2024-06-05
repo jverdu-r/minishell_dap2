@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:19:34 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 12:49:07 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:43:45 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ int	check_redir(t_command *cmd, char **env)
 		aux = aux->next;
 	}
 	return (0);
+}
+void	opn_cls(char *str)
+{
+	int	fd;
+
+	fd = open(str, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	close(fd);
 }

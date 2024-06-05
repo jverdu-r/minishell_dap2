@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/06/05 12:46:32 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:41:12 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	check_rd_str(t_redir *list, char **env)
 				{
 					free(aux->file);
 					aux->file = exp;
+					opn_cls(aux->file);
 				}
 				else
 					return (free(exp), bad_redir(aux->file));

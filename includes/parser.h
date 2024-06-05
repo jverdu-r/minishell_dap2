@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 12:47:42 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:43:38 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ int			check_rd_str(t_redir *list, char **env);
 int			bad_redir(char *str);
 int			check_void_redir(char *str);
 int			check_redir(t_command *cmd, char **env);
+void		opn_cls(char *str);
 #endif
