@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:22:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/06 13:49:53 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 14:13:50 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	redis_error(char *str, char *msg)
 
 int	check_in_fd_2(t_redir *in_files)
 {
-	if (access(in_files->file, R_OK) == -1)
+	if (access(in_files->file, R_OK) < 0)
 	{
 		if (errno == EACCES)
 			redis_error(in_files->file, ": Permission denied");
@@ -49,7 +49,7 @@ t_command	*check_in_fd(t_command *cmd, char **env)
 			if (check_in_fd_2(in_files) < 0)
 			{
 				cmd->in_fd = -1;
-				return (cmd);
+				return (skip_cmd(cmd));
 			}
 		}
 		else
