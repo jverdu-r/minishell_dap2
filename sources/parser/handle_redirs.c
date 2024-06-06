@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_redirs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:22:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 17:43:13 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:51:34 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,69 +37,70 @@ int	check_in_fd_2(t_redir *in_files)
 	return (0);
 }
 
-int	check_in_fd(t_redir *redir)
+int	check_in_fd(t_redir *redir, char **env)
 {
 	t_redir	*in_files;
 
 	in_files = redir;
 	while (in_files)
 	{
-		if (check_in_fd_2(in_files) < 0)
-			return (-1);
-		if (in_files->next)
-			in_files = in_files->next;
+		if (!check_rd_str(in_files, env))
+		{
+			if (check_in_fd_2(in_files) < 0)
+				return (-1);
+			if (in_files->next)
+				in_files = in_files->next;
+		}
 		else
 			break ;
 	}
 	return (open(in_files->file, O_RDONLY));
 }
 
-void	check_out_fd(t_command *cmd)
+int	check_out_fd(t_command *cmd, char **env)
 {
 	t_redir	*out_files;
 
 	out_files = cmd->out_files;
 	while (out_files)
 	{
-		if (cmd->app == 1)
-		{
-			cmd->out_fd = open(out_files->file, O_WRONLY | O_APPEND | \
-				O_CREAT, 0644);
-		}
+		if (!check_rd_str(out_files, env))
+			open_rd(out_files, cmd);
 		else
 		{
-			cmd->out_fd = open(out_files->file, O_CREAT | O_WRONLY | \
-				O_TRUNC, 0644);
+			cmd->out_fd = 1;
+			return (1);
 		}
-		if (out_files->next)
-			close(cmd->out_fd);
-		if (out_files->next)
-			out_files = out_files->next;
-		else
-			break ;
+		out_files = out_files->next;
 	}
+	return (0);
 }
 
-int	get_fds(t_command *raw_cmd)
+int	get_fds(t_toolbox *tools, char **env)
 {
 	t_command	*cmd;
 
-	cmd = raw_cmd;
+	cmd = tools->cmd;
 	while (cmd)
 	{
 		if (cmd && cmd->in_files)
-			cmd->in_fd = check_in_fd(cmd->in_files);
+			cmd->in_fd = check_in_fd(cmd->in_files, env);
 		if (cmd && cmd->in_fd == -1 && !cmd->next)
 			return (1);
 		if (cmd && cmd->out_files)
-		{
-			if (check_void_redir(cmd->out_files->file))
-				check_out_fd(cmd);
-			else
-				cmd = cmd->next;
-		}
-		if (cmd)
+			cmd = check_out_file_cmd(cmd, env);
+		if (cmd && cmd->next)
 			cmd = cmd->next;
+		else
+			break ;
 	}
+	if (!cmd)
+	{
+		tools->cmd = NULL;
+		return (1);
+	}
+	while (cmd->prev != NULL)
+		cmd = cmd->prev;
+	tools->cmd = cmd;
 	return (0);
 }

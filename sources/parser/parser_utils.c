@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/06/05 17:04:54 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:50:55 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,30 +92,30 @@ int	bad_redir(char *str)
 	return (1);
 }
 
-int	check_rd_str(t_redir *list, char **env, char *exp, int o)
+int	check_rd_str(t_redir *list, char **env)
 {
 	t_redir	*aux;
+	char	*exp;
 
 	aux = list;
-	while (aux)
+	exp = NULL;
+	if (aux->file)
 	{
-		if (aux->file)
+		if (ft_strlen(aux->file) > 0)
 		{
-			if (ft_strlen(aux->file) > 0)
+			exp = expander(aux->file, env, 0);
+			if (ft_strlen(exp) > 0)
 			{
-				exp = expander(aux->file, env, 0);
-				if (ft_strlen(exp) > 0)
-				{
-					free(aux->file);
-					aux->file = exp;
-					if (o == 1)
-						opn_cls(aux->file);
-				}
-				else
-					return (free(exp), bad_redir(aux->file), 1);
+				free(aux->file);
+				aux->file = exp;
+			}
+			else
+			{
+				bad_redir(aux->file);
+				free(exp);
+				return (1);
 			}
 		}
-		aux = aux->next;
 	}
 	return (0);
 }

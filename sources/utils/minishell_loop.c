@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 12:14:37 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 17:32:49 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:28:08 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,8 @@ void	routine(t_toolbox *tools)
 		}
 		aux = aux->next;
 	}
-	if (!check_redir(tools->cmd, tools->env))
-	{
-		if (get_fds(tools->cmd) == 0)
-			ft_executor(tools);
-	}
+	if (!get_fds(tools, tools->env))
+		ft_executor(tools);
 }
 
 int	minishell_loop(t_toolbox *tools)
