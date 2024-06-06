@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:43:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/06 10:47:51 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 13:50:45 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void	redir_free(t_redir *redir)
 	free(redir->file);
 	free(redir);
 }
-

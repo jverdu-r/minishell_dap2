@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:22:42 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/06 10:47:59 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 13:49:53 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,33 @@ int	check_in_fd_2(t_redir *in_files)
 	return (0);
 }
 
-int	check_in_fd(t_redir *redir, char **env)
+t_command	*check_in_fd(t_command *cmd, char **env)
 {
 	t_redir	*in_files;
 
-	in_files = redir;
+	in_files = cmd->in_files;
 	while (in_files)
 	{
 		if (!check_rd_str(in_files, env))
 		{
 			if (check_in_fd_2(in_files) < 0)
-				return (-1);
-			if (in_files->next)
-				in_files = in_files->next;
+			{
+				cmd->in_fd = -1;
+				return (cmd);
+			}
 		}
+		else
+		{
+			cmd = skip_cmd(cmd);
+			return (cmd);
+		}
+		if (in_files->next)
+			in_files = in_files->next;
 		else
 			break ;
 	}
-	return (open(in_files->file, O_RDONLY));
+	cmd->in_fd = open(in_files->file, O_RDONLY);
+	return (cmd);
 }
 
 int	check_out_fd(t_command *cmd, char **env)
@@ -84,7 +93,7 @@ int	get_fds(t_toolbox *tools, char **env)
 	while (cmd)
 	{
 		if (cmd && cmd->in_files)
-			cmd->in_fd = check_in_fd(cmd->in_files, env);
+			cmd = check_in_fd(cmd, env);
 		if (cmd && cmd->in_fd == -1 && !cmd->next)
 			return (1);
 		if (cmd && cmd->out_files)
