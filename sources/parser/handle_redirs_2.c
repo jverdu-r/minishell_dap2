@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 09:10:40 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/06 09:56:22 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:47:55 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	open_rd(t_redir *out, t_command *cmd)
 
 t_command	*check_out_file_cmd(t_command *cmd, char **env)
 {
-	if (check_void_redir(cmd->out_files->file))
+	if (cmd->out_files->file)
 	{
 		if (check_out_fd(cmd, env))
 			cmd = skip_cmd(cmd);

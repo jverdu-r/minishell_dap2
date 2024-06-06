@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:40:45 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/06 09:56:35 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:48:20 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ t_lexer		*extract_str(t_command *cmd, t_lexer *aux, char **env);
 char		**cp_ad_args(char **args, char *str);
 int			check_rd_str(t_redir *list, char **env);
 int			bad_redir(char *str);
-int			check_void_redir(char *str);
 t_command	*skip_cmd(t_command *cmd);
-
 void		open_rd(t_redir *out, t_command *cmd);
 t_command	*check_out_file_cmd(t_command *cmd, char **env);
 int			check_out_fd(t_command *cmd, char **env);
