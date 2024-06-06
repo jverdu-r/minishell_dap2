@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 17:44:34 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/24 08:53:18 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 15:46:04 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_num_err(t_toolbox *tools)
 {
-	ft_putstr_fd("bash: exit: hola: numeric argument required\n", 2);
+	ft_putstr_fd("bash: exit: numeric argument required\n", 2);
 	free(tools->old_pwd);
 	free(tools->home_dir);
 	free(tools->pwd);
@@ -64,22 +64,20 @@ int	m_exit(t_toolbox *tools, t_command *cmd)
 
 	if (cmd->args)
 	{
+		if (!check_num(cmd->args[0]))
+		{
+			code = ft_atoi(cmd->args[0]);
+			code = get_code(code);
+			if (!cmd->args[1])
+				return (exit_clear(tools, code));
+		}
+		else
+			return (exit_num_err(tools));
 		if (cmd->args[1])
 		{
 			ft_putstr_fd("exit\n", 2);
 			ft_putstr_fd("bash: exit: too many arguments\n", 2);
 			return (1);
-		}
-		else
-		{
-			if (!check_num(cmd->args[0]))
-			{
-				code = ft_atoi(cmd->args[0]);
-				code = get_code(code);
-				return (exit_clear(tools, code));
-			}
-			else
-				return (exit_num_err(tools));
 		}
 	}
 	return (exit_clear(tools, 0));

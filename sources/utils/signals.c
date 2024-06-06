@@ -6,7 +6,7 @@
 /*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:52:14 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/05/15 18:10:08 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:50:45 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	signal_father(int code)
 	else
 	{
 		g_exit_status = 131;
-		printf("Quit: 3\n");
+		printf("Quit: (core dumped)\n");
 	}
 }
 

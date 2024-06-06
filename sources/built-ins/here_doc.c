@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jverdu-r <jverdu-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:03:10 by daparici          #+#    #+#             */
-/*   Updated: 2024/05/31 09:13:06 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 16:06:34 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ void	child_control(int *pipe1, char **env, t_command *cmd, int i)
 	{
 		if (line == NULL)
 			(printf("\n"), exit(0));
-		if (!ft_strncmp(str_trimed, cmd->limiter[i], ft_strlen(str_trimed)))
+		if (!ft_strncmp(str_trimed, cmd->limiter[i], ft_strlen(str_trimed)) \
+			&& ft_strlen(str_trimed) > 0)
 			aux = expander_hdoc(line, env);
 		else
 			aux = ft_strdup(line);
 		write(2, "> ", 2);
-		ft_putstr_fd(aux, pipe1[1]);
-		(free(line), free(aux));
+		(ft_putstr_fd(aux, pipe1[1]), free(line), free(aux));
 		line = get_next_line(0);
 		if ((ft_strlen(str_trimed) == 0) && (ft_strlen(line) == 1))
 			break ;
