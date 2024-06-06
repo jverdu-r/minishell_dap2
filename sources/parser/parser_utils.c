@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:27:16 by jorge             #+#    #+#             */
-/*   Updated: 2024/06/06 09:50:55 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:24:48 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,11 @@ int	check_rd_str(t_redir *list, char **env)
 				free(exp);
 				return (1);
 			}
+		}
+		else
+		{
+			bad_redir(aux->file);
+			return (1);
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:48:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/06 09:58:08 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:28:21 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ t_command	*skip_cmd(t_command *cmd)
 		cmd_free(cmd);
 		cmd = NULL;
 	}
+	else
+		return (cmd_free(cmd), NULL);
 	return (cmd);
 }

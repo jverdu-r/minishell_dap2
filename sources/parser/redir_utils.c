@@ -6,7 +6,7 @@
 /*   By: jorge <jorge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:43:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2024/06/05 13:36:18 by jorge            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:31:45 by jorge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,7 @@ void	redir_free(t_redir *redir)
 
 int	check_void_redir(char *str)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!is_white_space(str[i]))
-			return (1);
-		i++;
-	}
+	if (ft_strlen(str) == 0)
+		return (1);
 	return (0);
 }
